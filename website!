@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flash Fiction Contest 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink2: #5f5e5a;
+      --ink3: #888780;
+      --surface: #ffffff;
+      --surface2: #f7f6f2;
+      --border: rgba(0,0,0,0.1);
+      --border2: rgba(0,0,0,0.18);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f0ede6;
+        --ink2: #b4b2a9;
+        --ink3: #888780;
+        --surface: #1a1a18;
+        --surface2: #222220;
+        --border: rgba(255,255,255,0.1);
+        --border2: rgba(255,255,255,0.18);
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--surface); color: var(--ink); line-height: 1.6; }
+
+    .site { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0; border-bottom: 0.5px solid var(--border);
+      margin-bottom: 5rem; position: sticky; top: 0;
+      background: var(--surface); z-index: 10;
+    }
+    .logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink2); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+      color: var(--ink2); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero { margin-bottom: 6rem; }
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+      color: var(--ink3); text-transform: uppercase; margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-family: var(--serif); font-size: clamp(3rem, 8vw, 4.5rem);
+      font-weight: 400; line-height: 1.05; color: var(--ink);
+      margin-bottom: 1.5rem; letter-spacing: -0.01em;
+    }
+    h1 em { font-style: italic; }
+    .hero-sub {
+      font-size: 17px; color: var(--ink2); line-height: 1.75;
+      max-width: 520px; margin-bottom: 2.5rem;
+    }
+    .cta-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+      background: var(--ink); color: var(--surface); border: none;
+      padding: 0.8rem 1.6rem; border-radius: 6px;
+      cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.75; }
+    .deadline-note { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
+
+    /* SECTIONS */
+    section { margin-bottom: 5rem; scroll-margin-top: 80px; }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+      color: var(--ink3); text-transform: uppercase;
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    h2 { font-family: var(--serif); font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
+
+    /* DETAILS GRID */
+    .details-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      border: 0.5px solid var(--border); border-radius: 10px;
+      overflow: hidden; margin-top: 1.5rem;
+      background: var(--border);
+    }
+    .detail-cell {
+      padding: 1.25rem 1.5rem; background: var(--surface);
+      transition: background 0.15s;
+    }
+    .detail-cell:hover { background: var(--surface2); }
+    .dc-label { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .dc-value { font-size: 15px; font-weight: 500; color: var(--ink); }
+
+    /* PRIZES */
+    .prizes-section { margin-top: 2.5rem; }
+    .prize-list-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+      color: var(--ink3); text-transform: uppercase;
+      margin-bottom: 0; padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .prize-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 1rem 0; border-bottom: 0.5px solid var(--border);
+      gap: 1rem;
+    }
+    .prize-row:last-child { border-bottom: none; }
+    .prize-place { font-family: var(--mono); font-size: 12px; color: var(--ink3); min-width: 80px; }
+    .prize-name { font-size: 15px; color: var(--ink); flex: 1; }
+    .prize-value { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--ink); }
+
+    /* GUIDELINES */
+    .guideline-list { margin-top: 1.5rem; }
+    .guideline-item {
+      display: flex; gap: 1.5rem; padding: 1rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .guideline-item:last-child { border-bottom: none; }
+    .g-num { font-family: var(--mono); font-size: 11px; color: var(--ink3); min-width: 28px; padding-top: 3px; }
+    .g-content { font-size: 15px; color: var(--ink2); line-height: 1.65; }
+    .g-content strong { color: var(--ink); font-weight: 500; }
+
+    /* ABOUT */
+    .about-card {
+      margin-top: 1.5rem; padding: 1.75rem;
+      border: 0.5px solid var(--border); border-radius: 10px;
+    }
+    .about-card p { font-size: 15px; color: var(--ink2); line-height: 1.8; }
+    .about-card p + p { margin-top: 1rem; }
+
+    /* FAQ */
+    .faq-list { margin-top: 1.5rem; }
+    .faq-item { border-bottom: 0.5px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 0; gap: 1rem; text-align: left;
+    }
+    .faq-q-text { font-size: 15px; color: var(--ink); font-weight: 500; font-family: var(--sans); }
+    .faq-icon { font-size: 16px; color: var(--ink3); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 14px; color: var(--ink2); line-height: 1.75;
+      padding-bottom: 1rem; display: none; max-width: 600px;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--border); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--ink3); text-decoration: none; }
+    .footer-links a:hover { color: var(--ink2); }
+
+    /* RESPONSIVE */
+    @media (max-width: 540px) {
+      .details-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+      h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+
+    <nav>
+      <a href="#" class="logo">FLASH//FICTION</a>
+      <div class="nav-links">
+        <a href="#details">Details</a>
+        <a href="#guidelines">Guidelines</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <p class="hero-eyebrow">2025 Open Call &nbsp;·&nbsp; Flash Fiction Contest</p>
+      <h1>Tell a world<br>in <em>under 500</em><br>words.</h1>
+      <p class="hero-sub">We're looking for stories that hit hard and leave fast. Submit your best flash fiction — any genre, any voice, one unforgettable piece.</p>
+      <div class="cta-row">
+        <a href="#guidelines" class="btn-primary">Submit your story →</a>
+        <span class="deadline-note">Deadline: September 30, 2025</span>
+      </div>
+    </div>
+
+    <section id="details">
+      <p class="section-label">Contest details</p>
+      <h2>What's at stake</h2>
+      <div class="details-grid">
+        <div class="detail-cell"><p class="dc-label">Word count</p><p class="dc-value">100 – 500 words</p></div>
+        <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
+        <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, worldwide</p></div>
+        <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
+        <div class="detail-cell"><p class="dc-label">Submission deadline</p><p class="dc-value">September 30, 2025</p></div>
+        <div class="detail-cell"><p class="dc-label">Results announced</p><p class="dc-value">November 15, 2025</p></div>
+      </div>
+
+      <div class="prizes-section">
+        <p class="prize-list-label">Prizes</p>
+        <div class="prize-row">
+          <span class="prize-place">1st place</span>
+          <span class="prize-name">Grand Prize Winner</span>
+          <span class="prize-value">€500</span>
+        </div>
+        <div class="prize-row">
+          <span class="prize-place">2nd place</span>
+          <span class="prize-name">Runner-Up</span>
+          <span class="prize-value">€200</span>
+        </div>
+        <div class="prize-row">
+          <span class="prize-place">3rd place</span>
+          <span class="prize-name">Third Place</span>
+          <span class="prize-value">€100</span>
+        </div>
+        <div class="prize-row">
+          <span class="prize-place">×5</span>
+          <span class="prize-name">Honourable Mentions — published in our anthology</span>
+          <span class="prize-value">—</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="guidelines">
+      <p class="section-label">Submission guidelines</p>
+      <h2>How to enter</h2>
+      <div class="guideline-list">
+        <div class="guideline-item">
+          <span class="g-num">01</span>
+          <p class="g-content"><strong>Word count:</strong> Your story must be between 100 and 500 words. Titles are not included in the count.</p>
+        </div>
+        <div class="guideline-item">
+          <span class="g-num">02</span>
+          <p class="g-content"><strong>Format:</strong> Submit as a .doc, .docx, or .pdf file. Use a standard 12pt font, double-spaced. Do not include your name anywhere in the document.</p>
+        </div>
+        <div class="guideline-item">
+          <span class="g-num">03</span>
+          <p class="g-content"><strong>Originality:</strong> Work must be your own, previously unpublished, and not under consideration elsewhere.</p>
+        </div>
+        <div class="guideline-item">
+          <span class="g-num">04</span>
+          <p class="g-content"><strong>Limit per person:</strong> One submission per author. Multiple entries will be disqualified.</p>
+        </div>
+        <div class="guideline-item">
+          <span class="g-num">05</span>
+          <p class="g-content"><strong>Rights:</strong> Authors retain full copyright. We ask for first publication rights for winning and shortlisted entries only.</p>
+        </div>
+        <div class="guideline-item">
+          <span class="g-num">06</span>
+          <p class="g-content"><strong>Submit via email:</strong> Send your story to <strong>submissions@flashfiction.com</strong> with the subject line <strong>SUBMISSION – [Story Title]</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="section-label">About the organizer</p>
+      <h2>Who we are</h2>
+      <div class="about-card">
+        <p>We're a small collective of readers, editors, and writers who believe that brevity is its own kind of art. Flash fiction forces a kind of honesty — there's no room to hide, no space for filler. Only what matters.</p>
+        <p>This contest is our way of celebrating that discipline, and of finding voices we haven't heard yet. Whether you've been writing for decades or just discovered flash last week, we want to read your story.</p>
+        <p>Questions? Reach us at <strong>hello@flashfiction.com</strong></p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <p class="section-label">FAQ</p>
+      <h2>Common questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q-text">Can I submit fiction that's been posted on my personal blog?</span>
+            <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
+          </button>
+          <p class="faq-a">No — we require work that has not been published anywhere, including personal blogs, social media, or self-publishing platforms. If it's been publicly posted, it doesn't qualify.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q-text">Do you accept simultaneous submissions?</span>
+            <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
+          </button>
+          <p class="faq-a">No. Please withdraw your entry promptly if it's accepted elsewhere, and notify us by email.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q-text">Is there a theme or prompt I need to follow?</span>
+            <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
+          </button>
+          <p class="faq-a">No theme, no prompt. Write whatever story you most want to tell. Genre, subject, tone — all open.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q-text">Will I receive feedback on my submission?</span>
+            <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
+          </button>
+          <p class="faq-a">We're unable to provide individual feedback due to volume, but all entrants will receive a notification email once judging is complete.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q-text">When will I hear back?</span>
+            <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
+          </button>
+          <p class="faq-a">Results are announced on November 15, 2025. Winners and honourable mentions will be contacted directly before the public announcement.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-logo">FLASH//FICTION · 2025</span>
+      <div class="footer-links">
+        <a href="mailto:hello@flashfiction.com">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-btn');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+  </script>
+</body>
+</html>
