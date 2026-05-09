@@ -168,26 +168,28 @@
       border: 0.5px solid var(--border); border-radius: 10px;
       overflow: hidden; border-spacing: 0; border-collapse: collapse;
     }
-    .winners-table thead tr {
-      background: var(--surface2);
-    }
+    .winners-table thead tr { background: var(--surface2); }
     .winners-table th {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
       color: var(--ink3); text-transform: uppercase;
       padding: 0.85rem 1.25rem; text-align: left;
-      border-bottom: 0.5px solid var(--border);
-      font-weight: 400;
+      border-bottom: 0.5px solid var(--border); font-weight: 400;
     }
     .winners-table td {
       padding: 1rem 1.25rem; font-size: 14px; color: var(--ink2);
-      border-bottom: 0.5px solid var(--border);
-      vertical-align: top;
+      border-bottom: 0.5px solid var(--border); vertical-align: top;
     }
     .winners-table tbody tr:last-child td { border-bottom: none; }
     .winners-table tbody tr { transition: background 0.15s; }
     .winners-table tbody tr:hover { background: var(--surface2); }
     .winner-author { font-weight: 500; color: var(--ink); }
-    .winner-story { font-style: italic; color: var(--ink2); }
+    .winner-story a {
+      font-style: italic; color: var(--ink2);
+      text-decoration: underline; text-decoration-color: var(--border2);
+      text-underline-offset: 3px; transition: color 0.2s;
+    }
+    .winner-story a:hover { color: var(--ink); }
+    .winner-story span { font-style: italic; color: var(--ink2); }
     .winner-prize { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
     .winner-aob { font-size: 13px; color: var(--ink3); }
 
@@ -196,15 +198,13 @@
       font-family: var(--mono); font-size: 12px; color: var(--ink3);
     }
     .winners-empty {
-      padding: 2rem 1.25rem;
-      font-family: var(--mono); font-size: 12px; color: var(--ink3);
-      text-align: center;
+      padding: 2rem 1.25rem; font-family: var(--mono);
+      font-size: 12px; color: var(--ink3); text-align: center;
     }
     .winners-error {
-      padding: 1.25rem;
-      font-family: var(--mono); font-size: 12px; color: var(--ink3);
-      border: 0.5px solid var(--border); border-radius: 10px;
-      margin-top: 1.5rem;
+      padding: 1.25rem; font-family: var(--mono); font-size: 12px;
+      color: var(--ink3); border: 0.5px solid var(--border);
+      border-radius: 10px; margin-top: 1.5rem;
     }
 
     /* FOOTER */
@@ -236,9 +236,9 @@
       <div class="nav-links">
         <a href="#details">Details</a>
         <a href="#guidelines">Guidelines</a>
-        <a href="#winners">Winners</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
+        <a href="#winners">Winners</a>
       </div>
     </nav>
 
@@ -320,15 +320,6 @@
       </div>
     </section>
 
-    <!-- WINNERS SECTION -->
-    <section id="winners">
-      <p class="section-label">Hall of fame</p>
-      <h2>Previous winners</h2>
-      <div id="winners-container">
-        <div class="winners-loading">Loading winners…</div>
-      </div>
-    </section>
-
     <section id="about">
       <p class="section-label">About the organizer</p>
       <h2>Who we are</h2>
@@ -381,6 +372,15 @@
       </div>
     </section>
 
+    <!-- WINNERS — bottom of page -->
+    <section id="winners">
+      <p class="section-label">Hall of fame</p>
+      <h2>Previous winners</h2>
+      <div id="winners-container">
+        <div class="winners-loading">Loading winners…</div>
+      </div>
+    </section>
+
     <footer>
       <span class="footer-logo">FLASH//FICTION · 2025</span>
       <div class="footer-links">
@@ -402,7 +402,17 @@
       });
     });
 
-    // ── Winners from Google Sheets ──────────────────────────────────────────
+    // Convert story title to URL slug
+    // e.g. "The Last Light" → "/stories/the-last-light.html"
+    function toSlug(title) {
+      return '/stories/' + title
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-') + '.html';
+    }
+
+    // Load winners from Google Sheets
     const SHEET_ID = '1k3ajLNr9K3ZojwmZ4hnxx6P8_1TEWTrPwwEKa_sSh5Q';
     const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
 
@@ -411,7 +421,6 @@
       try {
         const res = await fetch(SHEET_URL);
         const text = await res.text();
-        // Strip Google's JSONP wrapper
         const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
         const rows = json.table.rows;
 
@@ -421,14 +430,18 @@
         }
 
         const tableRows = rows.map(row => {
-          const author   = row.c[0]?.v || '—';
-          const story    = row.c[1]?.v || '—';
-          const prize    = row.c[2]?.v || '—';
-          const aob      = row.c[3]?.v || '';
+          const author = row.c[0]?.v || '—';
+          const story  = row.c[1]?.v || '—';
+          const prize  = row.c[2]?.v || '—';
+          const aob    = row.c[3]?.v || '';
+          const storyCell = story !== '—'
+            ? `<a href="${toSlug(story)}">${story}</a>`
+            : `<span>${story}</span>`;
+
           return `
             <tr>
               <td class="winner-author">${author}</td>
-              <td class="winner-story">${story}</td>
+              <td class="winner-story">${storyCell}</td>
               <td class="winner-prize">${prize}</td>
               <td class="winner-aob">${aob}</td>
             </tr>`;
