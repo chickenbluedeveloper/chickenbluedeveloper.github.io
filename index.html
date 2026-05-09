@@ -162,6 +162,51 @@
     }
     .faq-item.open .faq-a { display: block; }
 
+    /* WINNERS */
+    .winners-table {
+      width: 100%; margin-top: 1.5rem;
+      border: 0.5px solid var(--border); border-radius: 10px;
+      overflow: hidden; border-spacing: 0; border-collapse: collapse;
+    }
+    .winners-table thead tr {
+      background: var(--surface2);
+    }
+    .winners-table th {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+      color: var(--ink3); text-transform: uppercase;
+      padding: 0.85rem 1.25rem; text-align: left;
+      border-bottom: 0.5px solid var(--border);
+      font-weight: 400;
+    }
+    .winners-table td {
+      padding: 1rem 1.25rem; font-size: 14px; color: var(--ink2);
+      border-bottom: 0.5px solid var(--border);
+      vertical-align: top;
+    }
+    .winners-table tbody tr:last-child td { border-bottom: none; }
+    .winners-table tbody tr { transition: background 0.15s; }
+    .winners-table tbody tr:hover { background: var(--surface2); }
+    .winner-author { font-weight: 500; color: var(--ink); }
+    .winner-story { font-style: italic; color: var(--ink2); }
+    .winner-prize { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
+    .winner-aob { font-size: 13px; color: var(--ink3); }
+
+    .winners-loading {
+      padding: 2rem 0; text-align: center;
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+    }
+    .winners-empty {
+      padding: 2rem 1.25rem;
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+      text-align: center;
+    }
+    .winners-error {
+      padding: 1.25rem;
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+      border: 0.5px solid var(--border); border-radius: 10px;
+      margin-top: 1.5rem;
+    }
+
     /* FOOTER */
     footer {
       border-top: 0.5px solid var(--border); padding-top: 2rem;
@@ -178,6 +223,8 @@
       .details-grid { grid-template-columns: 1fr; }
       .nav-links { gap: 1rem; }
       h1 { font-size: 2.6rem; }
+      .winners-table th:last-child,
+      .winners-table td:last-child { display: none; }
     }
   </style>
 </head>
@@ -189,6 +236,7 @@
       <div class="nav-links">
         <a href="#details">Details</a>
         <a href="#guidelines">Guidelines</a>
+        <a href="#winners">Winners</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
       </div>
@@ -272,6 +320,15 @@
       </div>
     </section>
 
+    <!-- WINNERS SECTION -->
+    <section id="winners">
+      <p class="section-label">Hall of fame</p>
+      <h2>Previous winners</h2>
+      <div id="winners-container">
+        <div class="winners-loading">Loading winners…</div>
+      </div>
+    </section>
+
     <section id="about">
       <p class="section-label">About the organizer</p>
       <h2>Who we are</h2>
@@ -336,6 +393,7 @@
   </div>
 
   <script>
+    // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(item => {
       const btn = item.querySelector('.faq-btn');
       btn.addEventListener('click', () => {
@@ -343,6 +401,58 @@
         btn.setAttribute('aria-expanded', isOpen);
       });
     });
+
+    // ── Winners from Google Sheets ──────────────────────────────────────────
+    const SHEET_ID = '1k3ajLNr9K3ZojwmZ4hnxx6P8_1TEWTrPwwEKa_sSh5Q';
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
+
+    async function loadWinners() {
+      const container = document.getElementById('winners-container');
+      try {
+        const res = await fetch(SHEET_URL);
+        const text = await res.text();
+        // Strip Google's JSONP wrapper
+        const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
+        const rows = json.table.rows;
+
+        if (!rows || rows.length === 0) {
+          container.innerHTML = '<div class="winners-empty">No winners announced yet — check back after results are published.</div>';
+          return;
+        }
+
+        const tableRows = rows.map(row => {
+          const author   = row.c[0]?.v || '—';
+          const story    = row.c[1]?.v || '—';
+          const prize    = row.c[2]?.v || '—';
+          const aob      = row.c[3]?.v || '';
+          return `
+            <tr>
+              <td class="winner-author">${author}</td>
+              <td class="winner-story">${story}</td>
+              <td class="winner-prize">${prize}</td>
+              <td class="winner-aob">${aob}</td>
+            </tr>`;
+        }).join('');
+
+        container.innerHTML = `
+          <table class="winners-table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Story</th>
+                <th>Prize</th>
+                <th>AOB</th>
+              </tr>
+            </thead>
+            <tbody>${tableRows}</tbody>
+          </table>`;
+      } catch (err) {
+        container.innerHTML = `<div class="winners-error">Unable to load winners right now. Please check back later.</div>`;
+        console.error('Winners fetch error:', err);
+      }
+    }
+
+    loadWinners();
   </script>
 </body>
 </html>
