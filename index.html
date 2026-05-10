@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flash Fiction Contest 2025 — chickenblue</title>
+  <title>Flash Fiction Contest 2025 — ChickenBlue</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
@@ -136,6 +136,15 @@
     .g-content { font-size: 15px; color: var(--ink2); line-height: 1.65; }
     .g-content strong { color: var(--ink); font-weight: 500; }
 
+    /* FORM */
+    .form-wrapper {
+      margin-top: 1.5rem; border: 0.5px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+    }
+    .form-wrapper iframe {
+      width: 100%; display: block; border: none;
+    }
+
     /* BLOG */
     .blog-scroll-wrapper { position: relative; margin-top: 1.5rem; }
     .blog-scroll {
@@ -189,7 +198,7 @@
     .faq-a { font-size: 14px; color: var(--ink2); line-height: 1.75; padding-bottom: 1rem; display: none; max-width: 600px; }
     .faq-item.open .faq-a { display: block; }
 
-    /* WINNERS */
+    /* HALL OF FAME */
     .winners-table {
       width: 100%; margin-top: 1.5rem;
       border: 0.5px solid var(--border); border-radius: 10px;
@@ -253,19 +262,20 @@
       <div class="nav-links">
         <a href="#details">Details</a>
         <a href="#guidelines">Guidelines</a>
+        <a href="#submit">Submit</a>
         <a href="#blog">Blog</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
-        <a href="#winners">Winners</a>
+        <a href="#halloffame">Hall of Fame</a>
       </div>
     </nav>
 
     <div class="hero">
       <p class="hero-eyebrow">Open Call &nbsp;·&nbsp; Flash Fiction Contest</p>
-      <h1>Tell a world<br>in <em>under 50000</em><br>words.</h1>
+      <h1>Tell a world<br>in <em>under 1000</em><br>words.</h1>
       <p class="hero-sub">We're looking for stories that hit hard and leave fast. Submit your best flash fiction — any genre, any voice, one unforgettable piece.</p>
       <div class="cta-row">
-        <a href="#guidelines" class="btn-primary">Submit your story →</a>
+        <a href="#submit" class="btn-primary">Submit your story →</a>
         <span class="deadline-note">Deadline: September 30, 2025</span>
       </div>
     </div>
@@ -274,7 +284,7 @@
       <p class="section-label">Contest details</p>
       <h2>What's at stake</h2>
       <div class="details-grid">
-        <div class="detail-cell"><p class="dc-label">Word count</p><p class="dc-value">100 – 500 words</p></div>
+        <div class="detail-cell"><p class="dc-label">Word count</p><p class="dc-value">100 – 1000 words</p></div>
         <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
         <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, worldwide</p></div>
         <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
@@ -313,11 +323,11 @@
       <div class="guideline-list">
         <div class="guideline-item">
           <span class="g-num">01</span>
-          <p class="g-content"><strong>Word count:</strong> Your story must be between 100 and 500 words. Titles are not included in the count.</p>
+          <p class="g-content"><strong>Word count:</strong> Your story must be between 100 and 1000 words. Titles are not included in the count.</p>
         </div>
         <div class="guideline-item">
           <span class="g-num">02</span>
-          <p class="g-content"><strong>Format:</strong> Submit as a .doc, .docx, or .pdf file. Use a standard 12pt font, double-spaced. Do not include your name anywhere in the document.</p>
+          <p class="g-content"><strong>Format:</strong> Paste your story directly into the submission form. Use plain text only.</p>
         </div>
         <div class="guideline-item">
           <span class="g-num">03</span>
@@ -333,8 +343,17 @@
         </div>
         <div class="guideline-item">
           <span class="g-num">06</span>
-          <p class="g-content"><strong>Submit via email:</strong> Send your story to <strong>submissions@chickenblue.com</strong> with the subject line <strong>SUBMISSION – [Story Title]</strong>.</p>
+          <p class="g-content"><strong>Questions?</strong> Reach us at <strong>hello@chickenblue.com</strong></p>
         </div>
+      </div>
+    </section>
+
+    <!-- SUBMIT SECTION -->
+    <section id="submit">
+      <p class="section-label">Enter the contest</p>
+      <h2>Submit your story</h2>
+      <div class="form-wrapper">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfmhs4OpaPyUi7LMUqBzXifEncXGXqEAx41uGLB-Tlg56SYhA/viewform?embedded=true" height="1257" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       </div>
     </section>
 
@@ -401,8 +420,8 @@
       </div>
     </section>
 
-    <!-- WINNERS — bottom of page -->
-    <section id="winners">
+    <!-- HALL OF FAME -->
+    <section id="halloffame">
       <p class="section-label">Hall of fame</p>
       <h2>Previous winners</h2>
       <div id="winners-container">
