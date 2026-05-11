@@ -136,14 +136,17 @@
     .g-content { font-size: 15px; color: var(--ink2); line-height: 1.65; }
     .g-content strong { color: var(--ink); font-weight: 500; }
 
-    /* FORM */
-    .form-wrapper {
-      margin-top: 1.5rem; border: 0.5px solid var(--border);
-      border-radius: 10px; overflow: hidden;
+    /* SUBMIT */
+    .submit-card {
+      margin-top: 1.5rem; padding: 2.5rem;
+      border: 0.5px solid var(--border); border-radius: 10px;
+      background: var(--surface2);
+      display: flex; flex-direction: column; gap: 1.25rem;
     }
-    .form-wrapper iframe {
-      width: 100%; display: block; border: none;
+    .submit-card p {
+      font-size: 15px; color: var(--ink2); line-height: 1.75; max-width: 520px;
     }
+    .submit-card .cta-row { margin-top: 0.5rem; }
 
     /* BLOG */
     .blog-scroll-wrapper { position: relative; margin-top: 1.5rem; }
@@ -342,8 +345,12 @@
     <section id="submit">
       <p class="section-label">Enter the contest</p>
       <h2>Submit your story</h2>
-      <div class="form-wrapper">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfmhs4OpaPyUi7LMUqBzXifEncXGXqEAx41uGLB-Tlg56SYhA/viewform?embedded=true" height="1257" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      <div class="submit-card">
+        <p>Ready to enter? Click below to open the submission form. Make sure you have read the guidelines before submitting — we look forward to reading your story!</p>
+        <div class="cta-row">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmhs4OpaPyUi7LMUqBzXifEncXGXqEAx41uGLB-Tlg56SYhA/viewform" target="_blank" class="btn-primary">Open submission form →</a>
+          <span class="deadline-note">Closes 15th June, 2026</span>
+        </div>
       </div>
     </section>
 
@@ -377,7 +384,7 @@
             <span class="faq-q-text">Can I submit stories that have won awards in other competitions?</span>
             <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
           </button>
-          <p class="faq-a">No — if it's been publicly posted, it doesn't qualify. Altough to be honest I don't have the bandwith to check every entry. I'm not even sure where I'd start. I might google the winner if I remember. </p>
+          <p class="faq-a">No — if it's been publicly posted, it doesn't qualify. Altough to be honest I don't have the bandwith to check every entry. I'm not even sure where I'd start. I might google the winner if I remember.</p>
         </div>
         <div class="faq-item">
           <button class="faq-btn" aria-expanded="false">
