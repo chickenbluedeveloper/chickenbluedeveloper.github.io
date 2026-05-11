@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>chickenblue</title>
+  <title>chickenblue — Flash Fiction Contest</title>
+
+  <!-- Social sharing -->
+  <meta name="description" content="Got a story that will blow a readers socks off? Enter the ChickenBlue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta property="og:title" content="chickenblue — Flash Fiction Contest" />
+  <meta property="og:description" content="Got a story that will blow a readers socks off? Enter the ChickenBlue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta property="og:url" content="https://www.chickenblue.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="chickenblue — Flash Fiction Contest" />
+  <meta name="twitter:description" content="Got a story that will blow a readers socks off? Enter the ChickenBlue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
@@ -48,12 +59,17 @@
       background: var(--surface); z-index: 10;
     }
     .logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink2); text-decoration: none; }
-    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
     .nav-links a {
       font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
       color: var(--ink2); text-decoration: none; transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--ink); }
+    .nav-instagram {
+      font-size: 16px; color: var(--ink2); text-decoration: none;
+      transition: color 0.2s; display: flex; align-items: center;
+    }
+    .nav-instagram:hover { color: var(--ink); }
 
     /* HERO */
     .hero { margin-bottom: 6rem; }
@@ -81,6 +97,31 @@
     }
     .btn-primary:hover { opacity: 0.75; }
     .deadline-note { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
+
+    /* COUNTDOWN */
+    .countdown {
+      display: flex; gap: 1px; margin-top: 2.5rem;
+      border: 0.5px solid var(--border); border-radius: 10px;
+      overflow: hidden; background: var(--border);
+      max-width: 400px;
+    }
+    .countdown-cell {
+      flex: 1; padding: 1rem; background: var(--surface);
+      text-align: center;
+    }
+    .countdown-value {
+      font-family: var(--serif); font-size: 2rem; font-weight: 400;
+      color: var(--ink); line-height: 1; display: block;
+    }
+    .countdown-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+      color: var(--ink3); text-transform: uppercase; margin-top: 0.35rem;
+      display: block;
+    }
+    .countdown-closed {
+      padding: 1rem 1.5rem; background: var(--surface);
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+    }
 
     /* SECTIONS */
     section { margin-bottom: 5rem; scroll-margin-top: 80px; }
@@ -143,9 +184,7 @@
       background: var(--surface2);
       display: flex; flex-direction: column; gap: 1.25rem;
     }
-    .submit-card p {
-      font-size: 15px; color: var(--ink2); line-height: 1.75; max-width: 520px;
-    }
+    .submit-card p { font-size: 15px; color: var(--ink2); line-height: 1.75; max-width: 520px; }
     .submit-card .cta-row { margin-top: 0.5rem; }
 
     /* BLOG */
@@ -154,8 +193,7 @@
       display: flex; gap: 1rem; overflow-x: auto;
       scroll-snap-type: x mandatory; padding-bottom: 1rem;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border2) transparent;
+      scrollbar-width: thin; scrollbar-color: var(--border2) transparent;
     }
     .blog-scroll::-webkit-scrollbar { height: 4px; }
     .blog-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -242,7 +280,7 @@
       flex-wrap: wrap; gap: 1rem;
     }
     .footer-logo { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; align-items: center; }
     .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--ink3); text-decoration: none; }
     .footer-links a:hover { color: var(--ink2); }
 
@@ -254,6 +292,7 @@
       .winners-table th:last-child,
       .winners-table td:last-child { display: none; }
       .blog-card { flex: 0 0 220px; }
+      .countdown { max-width: 100%; }
     }
   </style>
 </head>
@@ -270,6 +309,7 @@
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a href="#halloffame">Hall of Fame</a>
+        <a href="https://www.instagram.com/chickenblue2/" target="_blank" class="nav-instagram" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
       </div>
     </nav>
 
@@ -280,6 +320,12 @@
       <div class="cta-row">
         <a href="#submit" class="btn-primary">Submit your story →</a>
         <span class="deadline-note">Deadline: 15th June, 2026</span>
+      </div>
+      <div class="countdown" id="countdown">
+        <div class="countdown-cell"><span class="countdown-value" id="cd-days">--</span><span class="countdown-label">Days</span></div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-hours">--</span><span class="countdown-label">Hours</span></div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-mins">--</span><span class="countdown-label">Minutes</span></div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-secs">--</span><span class="countdown-label">Seconds</span></div>
       </div>
     </div>
 
@@ -424,7 +470,8 @@
       <div class="footer-links">
         <a href="mailto:hello@chickenblue.com">Contact</a>
         <a href="/privacy.html">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="/terms.html">Terms</a>
+        <a href="https://www.instagram.com/chickenblue2/" target="_blank" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
       </div>
     </footer>
 
@@ -439,6 +486,27 @@
         btn.setAttribute('aria-expanded', isOpen);
       });
     });
+
+    // Countdown timer — set your deadline here
+    const DEADLINE = new Date('2026-06-15T23:59:59');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = DEADLINE - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<div class="countdown-closed">Submissions are now closed.</div>';
+        return;
+      }
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('cd-days').textContent  = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
+      document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // Slug generator
     function toSlug(title) {
