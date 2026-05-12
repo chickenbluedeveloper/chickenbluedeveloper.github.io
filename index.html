@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>chickenblue — Flash Fiction Contest</title>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a18'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' fill='%23f0ede6'>cb</text></svg>" />
+
   <!-- Social sharing -->
-  <meta name="description" content="Got a story that will blow a readers socks off? Enter the ChickenBlue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta name="description" content="Got a story that will blow a readers socks off? Enter the chickenblue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
   <meta property="og:title" content="chickenblue — Flash Fiction Contest" />
-  <meta property="og:description" content="Got a story that will blow a readers socks off? Enter the ChickenBlue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta property="og:description" content="Got a story that will blow a readers socks off? Enter the chickenblue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
   <meta property="og:url" content="https://www.chickenblue.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chickenblue — Flash Fiction Contest" />
-  <meta name="twitter:description" content="Got a story that will blow a readers socks off? Enter the ChickenBlue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta name="twitter:description" content="Got a story that will blow a readers socks off? Enter the chickenblue flash fiction contest. 1000 words*. €88 prize. Free to enter." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -237,6 +240,7 @@
     .faq-icon { font-size: 16px; color: var(--ink3); flex-shrink: 0; transition: transform 0.2s; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
     .faq-a { font-size: 14px; color: var(--ink2); line-height: 1.75; padding-bottom: 1rem; display: none; max-width: 600px; }
+    .faq-a a { color: var(--ink); text-underline-offset: 3px; }
     .faq-item.open .faq-a { display: block; }
 
     /* HALL OF FAME */
@@ -314,7 +318,7 @@
     </nav>
 
     <div class="hero">
-      <p class="hero-eyebrow">Welcome &nbsp;·&nbsp; Lets get started</p>
+      <p class="hero-eyebrow" id="hero-eyebrow">Loading…</p>
       <h1><br>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
       <p class="hero-sub">We're looking for stories that leave a mark. That hit fast and leave you a little sore after</p>
       <div class="cta-row">
@@ -335,7 +339,7 @@
       <div class="details-grid">
         <div class="detail-cell"><p class="dc-label">Word count</p><p class="dc-value">1000 words*</p></div>
         <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
-        <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, english speaking</p></div>
+        <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, English speaking</p></div>
         <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
         <div class="detail-cell"><p class="dc-label">Submission deadline</p><p class="dc-value">15th June, 2026</p></div>
         <div class="detail-cell"><p class="dc-label">Results announced</p><p class="dc-value">1st July 2026</p></div>
@@ -415,8 +419,8 @@
       <p class="section-label">About the organizer</p>
       <h2>Who we are</h2>
       <div class="about-card">
-        <p>We're a organisation that believes there are many great writers in the world that are not published and that there are many works of published fiction that are crap.</p>
-        <p>We want to build a credible space for new voices where they can get their first leg up. Winners will be chosen based on merit, not their social media following.</p>
+        <p>I started chickenblue because I believe there are many great writers in the world who are not published — and plenty of published fiction that frankly isn't up to much.</p>
+        <p>I want to build a credible space for new voices where they can get their first leg up. Winners are chosen on merit, not their social media following.</p>
         <p>Questions? Reach us at <strong>hello@chickenblue.com</strong></p>
       </div>
     </section>
@@ -430,7 +434,7 @@
             <span class="faq-q-text">Can I submit stories that have won awards in other competitions?</span>
             <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
           </button>
-          <p class="faq-a">No — if it's been publicly posted, it doesn't qualify. Altough to be honest I don't have the bandwith to check every entry. I'm not even sure where I'd start. I might google the winner if I remember.</p>
+          <p class="faq-a">No — if it's been publicly posted, it doesn't qualify. Although to be honest I don't have the bandwidth to check every entry. I'm not even sure where I'd start. I might google the winner if I remember.</p>
         </div>
         <div class="faq-item">
           <button class="faq-btn" aria-expanded="false">
@@ -444,14 +448,14 @@
             <span class="faq-q-text">Will I receive feedback on my submission?</span>
             <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
           </button>
-          <p class="faq-a">If you opt in. Every author that wants will receive a drumstick rating. One drumstick = Needs more work. Two drumsticks = You're on to something. Three drumsticks = Well done sir or madam</p>
+          <p class="faq-a">If you opt in. Every author that wants will receive a drumstick rating. One drumstick = Needs more work. Two drumsticks = You're on to something. Three drumsticks = Well done sir or madam.</p>
         </div>
         <div class="faq-item">
           <button class="faq-btn" aria-expanded="false">
             <span class="faq-q-text">When will I hear back?</span>
             <i class="ti ti-plus faq-icon" aria-hidden="true"></i>
           </button>
-          <p class="faq-a">Winners will be announced the 1st of the following month. Winners will be contacted directly before the public announcement. All live dates will go out on our Instagram page.</p>
+          <p class="faq-a">Winners will be announced the 1st of the following month. Winners will be contacted directly before the public announcement. All live dates will go out on our <a href="https://www.instagram.com/chickenblue2/" target="_blank">Instagram page</a>.</p>
         </div>
       </div>
     </section>
@@ -487,7 +491,14 @@
       });
     });
 
-    // Countdown timer — set your deadline here
+    // Month selector — auto sets the eyebrow to current competition month
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const now = new Date();
+    const competitionMonth = MONTHS[now.getMonth()];
+    const competitionYear = now.getFullYear();
+    document.getElementById('hero-eyebrow').textContent = `${competitionMonth} ${competitionYear} Competition  ·  Now open`;
+
+    // Countdown timer
     const DEADLINE = new Date('2026-06-15T23:59:59');
     function updateCountdown() {
       const now = new Date();
