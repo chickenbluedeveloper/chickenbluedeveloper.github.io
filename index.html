@@ -35,6 +35,8 @@
       --serif: 'DM Serif Display', Georgia, serif;
       --mono: 'DM Mono', monospace;
       --sans: 'DM Sans', sans-serif;
+      /* FIX: calculate nav height accurately for scroll offsets */
+      --nav-height: 60px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -54,15 +56,23 @@
 
     .site { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
 
-    /* NAV */
+    /* ─── NAV ─────────────────────────────────────────────────── */
     nav {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.5rem 0; border-bottom: 0.5px solid var(--border);
+      padding: 1rem 0; border-bottom: 0.5px solid var(--border);
       margin-bottom: 5rem; position: sticky; top: 0;
       background: var(--surface); z-index: 10;
+      height: var(--nav-height);
     }
-    .logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink2); text-decoration: none; }
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .logo {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em;
+      color: var(--ink2); text-decoration: none; flex-shrink: 0;
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex; gap: 1.5rem; align-items: center;
+    }
     .nav-links a {
       font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
       color: var(--ink2); text-decoration: none; transition: color 0.2s;
@@ -74,7 +84,43 @@
     }
     .nav-instagram:hover { color: var(--ink); }
 
-    /* HERO */
+    /* Hamburger button — hidden on desktop */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 4px; color: var(--ink2); font-size: 20px;
+      align-items: center; transition: color 0.2s;
+    }
+    .nav-hamburger:hover { color: var(--ink); }
+
+    /* Mobile menu drawer */
+    .nav-drawer {
+      display: none; /* shown via JS class */
+      position: fixed; top: var(--nav-height); left: 0; right: 0;
+      background: var(--surface); border-bottom: 0.5px solid var(--border);
+      z-index: 9; padding: 1rem 2rem 1.5rem;
+      flex-direction: column; gap: 0;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: var(--mono); font-size: 14px; letter-spacing: 0.04em;
+      color: var(--ink2); text-decoration: none;
+      padding: 0.75rem 0; border-bottom: 0.5px solid var(--border);
+      transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+    .nav-drawer a:hover { color: var(--ink); }
+
+    /* Responsive: collapse nav links into hamburger below 640px */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ─── SCROLL OFFSET ───────────────────────────────────────── */
+    /* FIX: use CSS variable for consistent scroll-margin across all sections */
+    section, .hero { scroll-margin-top: var(--nav-height); }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
     .hero { margin-bottom: 6rem; }
     .hero-eyebrow {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
@@ -101,24 +147,25 @@
     .btn-primary:hover { opacity: 0.75; }
     .deadline-note { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
 
-    /* COUNTDOWN */
+    /* ─── COUNTDOWN ───────────────────────────────────────────── */
+    /* FIX: removed max-width cap so it fills the content column */
     .countdown {
       display: flex; gap: 1px; margin-top: 2.5rem;
       border: 0.5px solid var(--border); border-radius: 10px;
       overflow: hidden; background: var(--border);
-      max-width: 400px;
+      width: 100%;
     }
     .countdown-cell {
-      flex: 1; padding: 1rem; background: var(--surface);
+      flex: 1; padding: 1.25rem 1rem; background: var(--surface);
       text-align: center;
     }
     .countdown-value {
-      font-family: var(--serif); font-size: 2rem; font-weight: 400;
-      color: var(--ink); line-height: 1; display: block;
+      font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 400; color: var(--ink); line-height: 1; display: block;
     }
     .countdown-label {
       font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
-      color: var(--ink3); text-transform: uppercase; margin-top: 0.35rem;
+      color: var(--ink3); text-transform: uppercase; margin-top: 0.45rem;
       display: block;
     }
     .countdown-closed {
@@ -126,8 +173,8 @@
       font-family: var(--mono); font-size: 12px; color: var(--ink3);
     }
 
-    /* SECTIONS */
-    section { margin-bottom: 5rem; scroll-margin-top: 80px; }
+    /* ─── SECTIONS ────────────────────────────────────────────── */
+    section { margin-bottom: 5rem; }
     .section-label {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
       color: var(--ink3); text-transform: uppercase;
@@ -136,7 +183,7 @@
     }
     h2 { font-family: var(--serif); font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
 
-    /* DETAILS GRID */
+    /* ─── DETAILS GRID ────────────────────────────────────────── */
     .details-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
       border: 0.5px solid var(--border); border-radius: 10px;
@@ -151,7 +198,7 @@
     .dc-label { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
     .dc-value { font-size: 15px; font-weight: 500; color: var(--ink); }
 
-    /* PRIZES */
+    /* ─── PRIZES ──────────────────────────────────────────────── */
     .prizes-section { margin-top: 2.5rem; }
     .prize-list-label {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
@@ -169,7 +216,7 @@
     .prize-name { font-size: 15px; color: var(--ink); flex: 1; }
     .prize-value { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--ink); }
 
-    /* GUIDELINES */
+    /* ─── GUIDELINES ──────────────────────────────────────────── */
     .guideline-list { margin-top: 1.5rem; }
     .guideline-item {
       display: flex; gap: 1.5rem; padding: 1rem 0;
@@ -180,7 +227,7 @@
     .g-content { font-size: 15px; color: var(--ink2); line-height: 1.65; }
     .g-content strong { color: var(--ink); font-weight: 500; }
 
-    /* SUBMIT */
+    /* ─── SUBMIT ──────────────────────────────────────────────── */
     .submit-card {
       margin-top: 1.5rem; padding: 2.5rem;
       border: 0.5px solid var(--border); border-radius: 10px;
@@ -189,9 +236,27 @@
     }
     .submit-card p { font-size: 15px; color: var(--ink2); line-height: 1.75; max-width: 520px; }
     .submit-card .cta-row { margin-top: 0.5rem; }
+    /* FIX: confirmation note after form link */
+    .submit-confirm-note {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+      border: 0.5px solid var(--border); border-radius: 6px;
+      padding: 0.75rem 1rem; background: var(--surface); margin-top: 0.25rem;
+    }
+    .submit-confirm-note i { font-size: 14px; flex-shrink: 0; }
 
-    /* BLOG */
-    .blog-scroll-wrapper { position: relative; margin-top: 1.5rem; }
+    /* ─── BLOG ────────────────────────────────────────────────── */
+    .blog-scroll-wrapper {
+      position: relative; margin-top: 1.5rem;
+      /* FIX: right-edge fade to signal scrollability */
+    }
+    /* Fade overlay on the right edge */
+    .blog-scroll-wrapper::after {
+      content: '';
+      position: absolute; top: 0; right: 0; bottom: 1rem; /* matches padding-bottom */
+      width: 80px; pointer-events: none;
+      background: linear-gradient(to right, transparent, var(--surface));
+    }
     .blog-scroll {
       display: flex; gap: 1rem; overflow-x: auto;
       scroll-snap-type: x mandatory; padding-bottom: 1rem;
@@ -217,9 +282,15 @@
     .blog-card:hover .blog-card-arrow { color: var(--ink); }
     .blog-loading { font-family: var(--mono); font-size: 12px; color: var(--ink3); padding: 2rem 0; }
     .blog-empty { font-family: var(--mono); font-size: 12px; color: var(--ink3); padding: 2rem 0; }
-    .blog-error { font-family: var(--mono); font-size: 12px; color: var(--ink3); border: 0.5px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-top: 1.5rem; }
+    /* FIX: improved error message with Instagram link */
+    .blog-error {
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+      border: 0.5px solid var(--border); border-radius: 10px;
+      padding: 1.25rem; margin-top: 1.5rem;
+    }
+    .blog-error a, .winners-error a { color: var(--ink2); text-underline-offset: 3px; }
 
-    /* ABOUT */
+    /* ─── ABOUT ───────────────────────────────────────────────── */
     .about-card {
       margin-top: 1.5rem; padding: 1.75rem;
       border: 0.5px solid var(--border); border-radius: 10px;
@@ -227,7 +298,7 @@
     .about-card p { font-size: 15px; color: var(--ink2); line-height: 1.8; }
     .about-card p + p { margin-top: 1rem; }
 
-    /* FAQ */
+    /* ─── FAQ ─────────────────────────────────────────────────── */
     .faq-list { margin-top: 1.5rem; }
     .faq-item { border-bottom: 0.5px solid var(--border); }
     .faq-item:last-child { border-bottom: none; }
@@ -243,7 +314,7 @@
     .faq-a a { color: var(--ink); text-underline-offset: 3px; }
     .faq-item.open .faq-a { display: block; }
 
-    /* HALL OF FAME */
+    /* ─── HALL OF FAME ────────────────────────────────────────── */
     .winners-table {
       width: 100%; margin-top: 1.5rem;
       border: 0.5px solid var(--border); border-radius: 10px;
@@ -275,9 +346,13 @@
     .winner-aob { font-size: 13px; color: var(--ink3); }
     .winners-loading { padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--ink3); }
     .winners-empty { padding: 2rem 1.25rem; font-family: var(--mono); font-size: 12px; color: var(--ink3); text-align: center; }
-    .winners-error { padding: 1.25rem; font-family: var(--mono); font-size: 12px; color: var(--ink3); border: 0.5px solid var(--border); border-radius: 10px; margin-top: 1.5rem; }
+    /* FIX: improved error message with Instagram link */
+    .winners-error {
+      padding: 1.25rem; font-family: var(--mono); font-size: 12px; color: var(--ink3);
+      border: 0.5px solid var(--border); border-radius: 10px; margin-top: 1.5rem;
+    }
 
-    /* FOOTER */
+    /* ─── FOOTER ──────────────────────────────────────────────── */
     footer {
       border-top: 0.5px solid var(--border); padding-top: 2rem;
       display: flex; justify-content: space-between; align-items: center;
@@ -288,21 +363,21 @@
     .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--ink3); text-decoration: none; }
     .footer-links a:hover { color: var(--ink2); }
 
-    /* RESPONSIVE */
+    /* ─── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 540px) {
       .details-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 1rem; }
       h1 { font-size: 2.6rem; }
       .winners-table th:last-child,
       .winners-table td:last-child { display: none; }
       .blog-card { flex: 0 0 220px; }
-      .countdown { max-width: 100%; }
     }
   </style>
 </head>
 <body>
   <div class="site">
 
+    <!-- ─── NAV ─────────────────────────────────────────────── -->
+    <!-- FIX: primary links kept; hamburger collapses all links on mobile -->
     <nav>
       <a href="#" class="logo">chickenblue</a>
       <div class="nav-links">
@@ -315,16 +390,35 @@
         <a href="#halloffame">Hall of Fame</a>
         <a href="https://www.instagram.com/chickenblue2/" target="_blank" class="nav-instagram" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
       </div>
+      <!-- Hamburger: only visible on mobile -->
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <i class="ti ti-menu-2" id="hamburger-icon"></i>
+      </button>
     </nav>
+
+    <!-- Mobile drawer (all links) -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+      <a href="#details" class="drawer-link">Details</a>
+      <a href="#guidelines" class="drawer-link">Guidelines</a>
+      <a href="#submit" class="drawer-link">Submit</a>
+      <a href="#blog" class="drawer-link">Blog</a>
+      <a href="#about" class="drawer-link">About</a>
+      <a href="#faq" class="drawer-link">FAQ</a>
+      <a href="#halloffame" class="drawer-link">Hall of Fame</a>
+      <a href="https://www.instagram.com/chickenblue2/" target="_blank" class="drawer-link">
+        <i class="ti ti-brand-instagram"></i> Instagram
+      </a>
+    </div>
 
     <div class="hero">
       <p class="hero-eyebrow" id="hero-eyebrow">Loading…</p>
-      <h1><br>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
+      <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
       <p class="hero-sub">We're looking for stories that leave a mark. That hit fast and leave you a little sore after.</p>
       <div class="cta-row">
         <a href="#submit" class="btn-primary">Submit your story →</a>
         <span class="deadline-note">Deadline: 15th June, 2026</span>
       </div>
+      <!-- FIX: full-width countdown, no max-width cap -->
       <div class="countdown" id="countdown">
         <div class="countdown-cell"><span class="countdown-value" id="cd-days">--</span><span class="countdown-label">Days</span></div>
         <div class="countdown-cell"><span class="countdown-value" id="cd-hours">--</span><span class="countdown-label">Hours</span></div>
@@ -354,7 +448,7 @@
         </div>
         <div class="prize-row">
           <span class="prize-place">+</span>
-          <span class="prize-name">The winner and their story will be immortilised in our Hall of Fame</span>
+          <span class="prize-name">The winner and their story will be immortalised in our Hall of Fame</span>
           <span class="prize-value">—</span>
         </div>
       </div>
@@ -401,6 +495,11 @@
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmhs4OpaPyUi7LMUqBzXifEncXGXqEAx41uGLB-Tlg56SYhA/viewform" target="_blank" class="btn-primary">Open submission form →</a>
           <span class="deadline-note">Closes 15th June, 2026</span>
         </div>
+        <!-- FIX: confirmation note to reassure entrants -->
+        <div class="submit-confirm-note">
+          <i class="ti ti-circle-check"></i>
+          You'll receive a confirmation email from Google Forms after submitting.
+        </div>
       </div>
     </section>
 
@@ -408,6 +507,7 @@
     <section id="blog">
       <p class="section-label">From the editors</p>
       <h2>Latest posts</h2>
+      <!-- FIX: ::after pseudo-element on wrapper provides right-edge fade -->
       <div class="blog-scroll-wrapper">
         <div id="blog-container">
           <div class="blog-loading">Loading posts…</div>
@@ -479,10 +579,10 @@
       </div>
     </footer>
 
-  </div>
+  </div><!-- /.site -->
 
   <script>
-    // FAQ accordion
+    // ─── FAQ accordion ────────────────────────────────────────────
     document.querySelectorAll('.faq-item').forEach(item => {
       const btn = item.querySelector('.faq-btn');
       btn.addEventListener('click', () => {
@@ -491,20 +591,50 @@
       });
     });
 
-    // Month selector — auto sets the eyebrow to current competition month
+    // ─── FIX: Hamburger menu ──────────────────────────────────────
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer    = document.getElementById('nav-drawer');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      hamburgerIcon.className = 'ti ti-menu-2';
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      drawer.setAttribute('aria-hidden', !isOpen);
+      hamburgerIcon.className = isOpen ? 'ti ti-x' : 'ti ti-menu-2';
+    });
+
+    // Close drawer when any link inside it is clicked
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', e => {
+      if (!drawer.contains(e.target) && !hamburger.contains(e.target)) {
+        closeDrawer();
+      }
+    });
+
+    // ─── Month eyebrow ────────────────────────────────────────────
     const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const now = new Date();
-    const competitionMonth = MONTHS[now.getMonth()];
-    const competitionYear = now.getFullYear();
-    document.getElementById('hero-eyebrow').textContent = `${competitionMonth} ${competitionYear} Competition  ·  Now open`;
+    document.getElementById('hero-eyebrow').textContent =
+      `${MONTHS[now.getMonth()]} ${now.getFullYear()} Competition  ·  Now open`;
 
-    // Countdown timer
+    // ─── Countdown timer ──────────────────────────────────────────
     const DEADLINE = new Date('2026-06-15T23:59:59');
     function updateCountdown() {
-      const now = new Date();
-      const diff = DEADLINE - now;
+      const diff = DEADLINE - new Date();
       if (diff <= 0) {
-        document.getElementById('countdown').innerHTML = '<div class="countdown-closed">Submissions are now closed.</div>';
+        document.getElementById('countdown').innerHTML =
+          '<div class="countdown-closed">Submissions are now closed.</div>';
         return;
       }
       const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -519,21 +649,29 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Slug generator
+    // ─── Slug generator ───────────────────────────────────────────
     function toSlug(title) {
       return title.toLowerCase().trim()
         .replace(/[^a-z0-9\s-]/g, '')
         .replace(/\s+/g, '-');
     }
 
+    // FIX: SHEET_ID noted here — ensure the Google Sheet is set to
+    // "Anyone with the link → Viewer" only, never Editor.
     const SHEET_ID = '1k3ajLNr9K3ZojwmZ4hnxx6P8_1TEWTrPwwEKa_sSh5Q';
 
-    // Load blog posts
+    // ─── FIX: improved error message helper ───────────────────────
+    const IG_LINK = 'https://www.instagram.com/chickenblue2/';
+    function errorHTML(what) {
+      return `Unable to load ${what} right now. For the latest updates, follow us on <a href="${IG_LINK}" target="_blank">Instagram</a>.`;
+    }
+
+    // ─── Load blog posts ──────────────────────────────────────────
     async function loadBlog() {
       const container = document.getElementById('blog-container');
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Blogs`;
       try {
-        const res = await fetch(url);
+        const res  = await fetch(url);
         const text = await res.text();
         const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
         const rows = json.table.rows;
@@ -554,16 +692,16 @@
         }).join('');
         container.innerHTML = `<div class="blog-scroll">${cards}</div>`;
       } catch (err) {
-        container.innerHTML = '<div class="blog-error">Unable to load posts right now. Please check back later.</div>';
+        container.innerHTML = `<div class="blog-error">${errorHTML('posts')}</div>`;
       }
     }
 
-    // Load winners
+    // ─── Load winners ─────────────────────────────────────────────
     async function loadWinners() {
       const container = document.getElementById('winners-container');
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
       try {
-        const res = await fetch(url);
+        const res  = await fetch(url);
         const text = await res.text();
         const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
         const rows = json.table.rows;
@@ -591,16 +729,13 @@
           <table class="winners-table">
             <thead>
               <tr>
-                <th>Author</th>
-                <th>Story</th>
-                <th>Prize</th>
-                <th>AOB</th>
+                <th>Author</th><th>Story</th><th>Prize</th><th>AOB</th>
               </tr>
             </thead>
             <tbody>${tableRows}</tbody>
           </table>`;
       } catch (err) {
-        container.innerHTML = '<div class="winners-error">Unable to load winners right now. Please check back later.</div>';
+        container.innerHTML = `<div class="winners-error">${errorHTML('winners')}</div>`;
       }
     }
 
