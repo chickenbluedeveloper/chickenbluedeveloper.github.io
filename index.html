@@ -9,14 +9,14 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a18'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' fill='%23f0ede6'>cb</text></svg>" />
 
   <!-- Social sharing -->
-  <meta name="description" content="Got a story that will blow a readers socks off? Enter The Coop, a brand new flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta name="description" content="Got a story that will blow a readers socks off? Enter The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions reopen 1st July 2026." />
   <meta property="og:title" content="chickenblue" />
-  <meta property="og:description" content="Got a story that will blow a readers socks off? Enter The Coop, a brand new flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta property="og:description" content="Got a story that will blow a readers socks off? Enter The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions reopen 1st July 2026." />
   <meta property="og:url" content="https://www.chickenblue.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chickenblue" />
-  <meta name="twitter:description" content="Got a story that will blow a readers socks off? Enter The Coop, a brand new flash fiction contest. 1000 words*. €88 prize. Free to enter." />
+  <meta name="twitter:description" content="Got a story that will blow a readers socks off? Enter The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions reopen 1st July 2026." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -436,14 +436,10 @@
       <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
       <p class="hero-sub">We're looking for stories that leave a mark. That hit fast and leave you a little sore after.</p>
       <div class="cta-row">
-        <a href="#submit" class="btn-primary">Submit your story →</a>
-        <span class="deadline-note">Deadline: 15th June, 2026</span>
+        <span class="deadline-note">Submissions reopen 1st July, 2026</span>
       </div>
       <div class="countdown" id="countdown">
-        <div class="countdown-cell"><span class="countdown-value" id="cd-days">--</span><span class="countdown-label">Days</span></div>
-        <div class="countdown-cell"><span class="countdown-value" id="cd-hours">--</span><span class="countdown-label">Hours</span></div>
-        <div class="countdown-cell"><span class="countdown-value" id="cd-mins">--</span><span class="countdown-label">Minutes</span></div>
-        <div class="countdown-cell"><span class="countdown-value" id="cd-secs">--</span><span class="countdown-label">Seconds</span></div>
+        <div class="countdown-closed">Competition Closed.</div>
       </div>
     </div>
 
@@ -455,8 +451,8 @@
         <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
         <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, English speaking</p></div>
         <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
-        <div class="detail-cell"><p class="dc-label">Submission deadline</p><p class="dc-value">15th June, 2026</p></div>
-        <div class="detail-cell"><p class="dc-label">Results announced</p><p class="dc-value">1st July 2026</p></div>
+        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Competition closed</p></div>
+        <div class="detail-cell"><p class="dc-label">Submissions reopen</p><p class="dc-value">1st July, 2026</p></div>
       </div>
 
       <div class="prizes-section">
@@ -509,14 +505,9 @@
       <p class="section-label">Enter the contest</p>
       <h2>Submit your story</h2>
       <div class="submit-card">
-        <p>Ready to enter? Click below to open the submission form. Make sure you have read the terms (link at the bottom of the page) before submitting — we look forward to reading your story!</p>
+        <p>Submissions are currently closed. The next round opens on 1st July, 2026 — follow us on Instagram or Bluesky so you don't miss it!</p>
         <div class="cta-row">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmhs4OpaPyUi7LMUqBzXifEncXGXqEAx41uGLB-Tlg56SYhA/viewform" target="_blank" class="btn-primary">Open submission form →</a>
-          <span class="deadline-note">Closes 15th June, 2026</span>
-        </div>
-        <div class="submit-confirm-note">
-          <i class="ti ti-circle-check"></i>
-          You'll receive a confirmation email from Google Forms after submitting.
+          <span class="deadline-note">Reopens 1st July, 2026</span>
         </div>
       </div>
     </section>
@@ -642,30 +633,8 @@
     });
 
     // Hero eyebrow
-    const now = new Date();
     document.getElementById('hero-eyebrow').textContent =
-      `June ${now.getFullYear()} Competition  ·  Now open`;
-
-    // Countdown timer
-    const DEADLINE = new Date('2026-06-15T23:59:59');
-    function updateCountdown() {
-      const diff = DEADLINE - new Date();
-      if (diff <= 0) {
-        document.getElementById('countdown').innerHTML =
-          '<div class="countdown-closed">Submissions are now closed.</div>';
-        return;
-      }
-      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secs  = Math.floor((diff % (1000 * 60)) / 1000);
-      document.getElementById('cd-days').textContent  = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
-      document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+      'Competition closed  ·  Reopens 1st July 2026';
 
     // Slug generator
     function toSlug(title) {
