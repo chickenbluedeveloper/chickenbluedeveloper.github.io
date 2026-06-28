@@ -637,7 +637,7 @@
     // Load blog posts from Substack RSS via rss2json
     async function loadBlog() {
       const container = document.getElementById('blog-container');
-      const rssUrl    = 'https://chickenblue.substack.com/feed';
+      const rssUrl = 'https://chickenblue.substack.com/feed?limit=20';
       const proxyUrl  = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
       try {
