@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -69,8 +70,6 @@
       font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em;
       color: var(--ink2); text-decoration: none; flex-shrink: 0;
     }
-
-    /* Desktop nav links */
     .nav-links { display: flex; gap: 1.5rem; align-items: center; }
     .nav-links a {
       font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
@@ -95,7 +94,6 @@
     .nav-substack:hover { color: var(--ink); }
     .nav-substack svg { display: block; }
 
-    /* Hamburger button — hidden on desktop */
     .nav-hamburger {
       display: none; background: none; border: none; cursor: pointer;
       padding: 4px; color: var(--ink2); font-size: 20px;
@@ -103,7 +101,6 @@
     }
     .nav-hamburger:hover { color: var(--ink); }
 
-    /* Mobile menu drawer — constrained to site width, not full viewport */
     .nav-drawer {
       display: none;
       position: fixed; top: var(--nav-height); left: 0; right: 0;
@@ -111,7 +108,6 @@
       z-index: 9;
     }
     .nav-drawer.open { display: block; }
-    /* Inner wrapper mirrors .site centering */
     .nav-drawer-inner {
       max-width: var(--site-max);
       margin: 0 auto;
@@ -127,7 +123,6 @@
     .nav-drawer a:last-child { border-bottom: none; }
     .nav-drawer a:hover { color: var(--ink); }
 
-    /* Responsive: collapse nav links into hamburger below 640px */
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
@@ -308,7 +303,7 @@
     .faq-item:last-child { border-bottom: none; }
     .faq-btn {
       width: 100%; background: none; border: none; cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1.1rem 0; gap: 1rem; text-align: left;
     }
     .faq-q-text { font-size: 15px; color: var(--ink); font-weight: 500; font-family: var(--sans); }
@@ -358,7 +353,7 @@
     /* ─── FOOTER ──────────────────────────────────────────────── */
     footer {
       border-top: 0.5px solid var(--border); padding-top: 2rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 1rem;
     }
     .footer-logo { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
@@ -432,7 +427,7 @@
   <div class="site">
 
     <div class="hero">
-      <p class="hero-eyebrow" id="hero-eyebrow">Loading…</p>
+      <p class="hero-eyebrow" id="hero-eyebrow">Competition closed  ·  Reopens 1st July 2026</p>
       <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
       <p class="hero-sub">We're looking for stories that leave a mark. That hit fast and leave you a little sore after.</p>
       <div class="cta-row">
@@ -604,8 +599,8 @@
     });
 
     // Hamburger menu
-    const hamburger    = document.getElementById('nav-hamburger');
-    const drawer       = document.getElementById('nav-drawer');
+    const hamburger     = document.getElementById('nav-hamburger');
+    const drawer        = document.getElementById('nav-drawer');
     const hamburgerIcon = document.getElementById('hamburger-icon');
 
     function closeDrawer() {
@@ -632,17 +627,6 @@
       }
     });
 
-    // Hero eyebrow
-    document.getElementById('hero-eyebrow').textContent =
-      'Competition closed  ·  Reopens 1st July 2026';
-
-    // Slug generator
-    function toSlug(title) {
-      return title.toLowerCase().trim()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-');
-    }
-
     const SHEET_ID = '1k3ajLNr9K3ZojwmZ4hnxx6P8_1TEWTrPwwEKa_sSh5Q';
     const IG_LINK  = 'https://www.instagram.com/chickenblue2/';
 
@@ -650,56 +634,64 @@
       return `Unable to load ${what} right now. For the latest updates, follow us on <a href="${IG_LINK}" target="_blank">Instagram</a>.`;
     }
 
-    // Load blog posts
+    // Load blog posts from Substack RSS via rss2json
     async function loadBlog() {
       const container = document.getElementById('blog-container');
-      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Blogs`;
+      const rssUrl    = 'https://chickenblue.substack.com/feed';
+      const proxyUrl  = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
       try {
-        const res  = await fetch(url);
-        const text = await res.text();
-        const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
-        const rows = json.table.rows;
-        if (!rows || rows.length === 0) {
+        const res  = await fetch(proxyUrl);
+        const data = await res.json();
+
+        if (data.status !== 'ok' || !data.items || data.items.length === 0) {
           container.innerHTML = '<div class="blog-empty">No posts yet — check back soon.</div>';
           return;
         }
-        const cards = rows.map(row => {
-          const title = row.c[0]?.v || 'Untitled';
-          const date  = row.c[1]?.v || '';
-          const slug  = toSlug(title);
+
+        const cards = data.items.map(item => {
+          const title = item.title || 'Untitled';
+          const date  = item.pubDate
+            ? new Date(item.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+            : '';
+          const url = item.link;
           return `
-            <a href="/blog/${slug}.html" class="blog-card">
+            <a href="${url}" target="_blank" rel="noopener noreferrer" class="blog-card">
               <span class="blog-card-date">${date}</span>
               <span class="blog-card-title">${title}</span>
               <span class="blog-card-arrow">Read →</span>
             </a>`;
         }).join('');
+
         container.innerHTML = `<div class="blog-scroll">${cards}</div>`;
       } catch (err) {
         container.innerHTML = `<div class="blog-error">${errorHTML('posts')}</div>`;
       }
     }
 
-    // Load winners
+    // Load winners from Google Sheet
     async function loadWinners() {
       const container = document.getElementById('winners-container');
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
+
       try {
         const res  = await fetch(url);
         const text = await res.text();
         const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
         const rows = json.table.rows;
+
         if (!rows || rows.length === 0) {
           container.innerHTML = '<div class="winners-empty">No winners announced yet — check back after results are published.</div>';
           return;
         }
+
         const tableRows = rows.map(row => {
           const author = row.c[0]?.v || '—';
           const story  = row.c[1]?.v || '—';
           const prize  = row.c[2]?.v || '—';
           const aob    = row.c[3]?.v || '';
           const storyCell = story !== '—'
-            ? `<a href="/stories/${toSlug(story)}.html">${story}</a>`
+            ? `<a href="/stories/${story.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}.html">${story}</a>`
             : `<span>${story}</span>`;
           return `
             <tr>
@@ -709,6 +701,7 @@
               <td class="winner-aob">${aob}</td>
             </tr>`;
         }).join('');
+
         container.innerHTML = `
           <table class="winners-table">
             <thead>
