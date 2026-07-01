@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elvis Is Alive! (And Living in Meemaw's Disco Ball) — chickenblue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink2: #5f5e5a;
+      --ink3: #888780;
+      --surface: #ffffff;
+      --surface2: #f7f6f2;
+      --border: rgba(0,0,0,0.1);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f0ede6;
+        --ink2: #b4b2a9;
+        --ink3: #888780;
+        --surface: #1a1a18;
+        --surface2: #222220;
+        --border: rgba(255,255,255,0.1);
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--surface); color: var(--ink); line-height: 1.6; }
+
+    .site { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0; border-bottom: 0.5px solid var(--border);
+      margin-bottom: 4rem; position: sticky; top: 0;
+      background: var(--surface); z-index: 10;
+    }
+    .logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink2); text-decoration: none; }
+    .back-link {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+      color: var(--ink2); text-decoration: none; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    /* STORY HEADER */
+    .story-header { margin-bottom: 3rem; }
+    .story-eyebrow {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+      color: var(--ink3); text-transform: uppercase; margin-bottom: 1.25rem;
+    }
+    .story-title {
+      font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 400; line-height: 1.1; color: var(--ink);
+      margin-bottom: 1.5rem; letter-spacing: -0.01em;
+    }
+    .story-meta {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      padding: 1.25rem 0; border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .meta-label { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; text-transform: uppercase; }
+    .meta-value { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+    /* STORY BODY */
+    .story-body {
+      font-size: 17px; line-height: 1.9; color: var(--ink2);
+      max-width: 620px;
+    }
+    .story-body p { margin-bottom: 1.5rem; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .scene-break {
+      text-align: center; font-family: var(--mono); font-size: 13px;
+      color: var(--ink3); letter-spacing: 0.2em; margin: 2rem 0 !important;
+    }
+
+    /* FOOTER */
+    .story-footer {
+      margin-top: 4rem; padding-top: 2rem;
+      border-top: 0.5px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
+    .footer-back {
+      font-family: var(--mono); font-size: 12px; color: var(--ink3);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-back:hover { color: var(--ink2); }
+  </style>
+</head>
+<body>
+  <div class="site">
+
+    <nav>
+      <a href="/" class="logo">chickenblue</a>
+      <a href="/#halloffame" class="back-link">← Back to Hall of Fame</a>
+    </nav>
+
+    <div class="story-header">
+      <p class="story-eyebrow">The Coop · July 2026 · Winning Story</p>
+      <h1 class="story-title">Elvis Is Alive! (And Living in Meemaw's Disco Ball)</h1>
+      <div class="story-meta">
+        <div class="meta-item">
+          <span class="meta-label">Author</span>
+          <span class="meta-value">Jane S.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-body">
+      <p>I carefully took the disco ball down and nestled it into a box full of Meemaw's garish polyester scarves. It looked like an egg in a flamboyant nest—if the bird had a bedazzler.</p>
+      <p>"Gentle with this one," I told Craig, handing it over. He rolled his eyes and stomped off to the van.</p>
+      <p>I scanned the room, looking for any lingering traces of Meemaw. She'd been in hospice for a year but hadn't let me touch her apartment at all.</p>
+      <p>"Just like it was," she wheezed, her liver-spotted hand patting mine. "I'll be back for my treasures."</p>
+      <p>The van was now full of those treasures. Fake plants, decorative clocks from Temu, airbrushed paintings of Jesus, ceramic frogs…and one disco ball.</p>
+      <p>Craig had swatted at it when we entered.</p>
+      <p>"Careful!" I hissed. "That's the King."</p>
+      <p>He snickered and swiveled his hips in a lewd pantomime. I wrapped my arms around the ball to shield it from him.</p>
+      <p class="scene-break">#</p>
+      <p>Meemaw and Pop loved Elvis. After Pop died she'd spend hours laying on her couch, playing the records they'd collected together.</p>
+      <p>I'd visit and hear, "Are You Lonesome Tonight?" through her door, Elvis' mellifluous baritone asking her if the "chairs in her parlor seemed empty and bare."</p>
+      <p>Then one day, I found Meemaw doing the Bump to the jaunty beat of "All Shook Up." She gestured at me to join. As we tapped our hips together I asked her what had put her in such a good mood.</p>
+      <p>"Pop sent me a friend," she smiled, gesturing at the disco ball. My dementia spidey-sense tingled.</p>
+      <p>"Uh, we bought that at the flea together last year. Don't you remember?"</p>
+      <p>"I know, sugar," she laughed. "But Elvis lives in it now. He's great company."</p>
+      <p>My spidey-sense rose to DEFCON 1. I guided her to the couch.</p>
+      <p>"Meemaw, Elvis is dead." I scanned her eyes, looking for differences in pupil size. They crinkled in amusement.</p>
+      <p>"And so is Pop, honey. How do you think they met?" She rested a hand on my cheek. "Don't trouble yourself, cher. So I'm chatting with a disco ball. What's the harm? Is that really crazier than anything else your fool grandma's done?"</p>
+      <p>I flashed back to the time she showed up at my ex-boyfriends apartment in a witch costume from Spirit Halloween, spitting made up hexes at him while she gathered me into her arms. Or the time she made me stay up all night to make thirty-three pies for the church bake sale, "one for each year of our Lord's life."</p>
+      <p>"No," I acquiesced, looking up at the ball. "I guess it doesn't. Hi, Elvis."</p>
+      <p>"Ohh mama, I'm havin' a ball in the ball, mama," Meemaw said in an exaggerated Southern drawl, her lip curled in a classic King sneer. We fell back on the couch, giggling.</p>
+      <p class="scene-break">#</p>
+      <p>I slowly carried Elvis down the steep stairs to the driveway. Craig laid on the van's horn and I lost my footing, practically falling the final few steps.</p>
+      <p>"Let's go," he whined from the driver's seat. A prickly flush crept up my neck. Craig would never send a legendary rock idol to comfort me after his death. Craig didn't even put the toilet seat down.</p>
+      <p>"Get out." I said, opening the door. "I've got it. From here, and from now on."</p>
+      <p>He rolled his eyes but slid out like a slug, offering no real protest. I climbed into the driver's seat and buckled the disco ball box into the passenger seat while Craig pulled up Uber on his phone.</p>
+      <p>"You're as crazy as her," he muttered.</p>
+      <p>"If I can dream," I retorted. I reversed out of the driveway and headed for home. I had some decorating to do.</p>
+    </div>
+
+    <div class="story-footer">
+      <span class="footer-logo">chickenblue · 2026</span>
+      <a href="/#halloffame" class="footer-back">← Back to Hall of Fame</a>
+    </div>
+
+  </div>
+</body>
+</html>
