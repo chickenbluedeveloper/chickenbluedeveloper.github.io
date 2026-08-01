@@ -9,14 +9,14 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a18'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' fill='%23f0ede6'>cb</text></svg>" />
 
   <!-- Social sharing -->
-  <meta name="description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for this round are now closed." />
+  <meta name="description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the August round are now open." />
   <meta property="og:title" content="chickenblue" />
-  <meta property="og:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for this round are now closed." />
+  <meta property="og:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the August round are now open." />
   <meta property="og:url" content="https://www.chickenblue.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chickenblue" />
-  <meta name="twitter:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for this round are now closed." />
+  <meta name="twitter:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the August round are now open." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -252,6 +252,14 @@
       padding: 0.75rem 1rem; background: var(--surface); margin-top: 0.25rem;
     }
     .submit-confirm-note i { font-size: 14px; flex-shrink: 0; }
+    .submit-confirm-note a { color: var(--ink2); text-underline-offset: 3px; }
+    .submit-confirm-note a:hover { color: var(--ink); }
+
+    .form-embed-wrapper {
+      border: 0.5px solid var(--border); border-radius: 10px;
+      overflow: hidden; background: var(--surface);
+    }
+    .form-embed-wrapper iframe { display: block; width: 100%; border: none; }
 
     /* ─── BLOG ────────────────────────────────────────────────── */
     .blog-scroll-wrapper { position: relative; margin-top: 1.5rem; }
@@ -431,11 +439,12 @@
   <div class="site">
 
     <div class="hero">
-      <p class="hero-eyebrow" id="hero-eyebrow">Submissions closed</p>
+      <p class="hero-eyebrow" id="hero-eyebrow">Submissions open</p>
       <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
-      <p class="hero-sub">We're looking for stories that leave a mark. That hit fast and leave you a little sore after. Submissions for this round have now closed — thank you to everyone who entered.</p>
+      <p class="hero-sub">We're looking for stories that leave a mark. That hit fast and leave you a little sore after. The August round of The Coop is now open — send us your best.</p>
       <div class="cta-row">
-        <span class="deadline-note">Winner announced 1st of next month on Instagram</span>
+        <a href="#submit" class="btn-primary">Submit your story</a>
+        <span class="deadline-note">Deadline: 15th August, 2026</span>
       </div>
       <div class="countdown" id="countdown">
         <div class="countdown-cell"><span class="countdown-value" id="cd-days">–</span><span class="countdown-label">Days</span></div>
@@ -453,8 +462,8 @@
         <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
         <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, English speaking</p></div>
         <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
-        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Submissions closed</p></div>
-        <div class="detail-cell"><p class="dc-label">Submissions closed</p><p class="dc-value">15th July, 2026</p></div>
+        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Submissions open</p></div>
+        <div class="detail-cell"><p class="dc-label">Deadline</p><p class="dc-value">15th August, 2026</p></div>
       </div>
 
       <div class="prizes-section">
@@ -513,15 +522,16 @@
 
     <section id="submit">
       <p class="section-label">Enter the contest</p>
-      <h2>Submissions are closed</h2>
+      <h2>Submit your story</h2>
       <div class="submit-card">
-        <p>Thanks to everyone who sent in a story this round — submissions are now closed and the judging is underway. The winner will be announced on the 1st of next month. Follow along on Instagram or Substack so you don't miss it, and keep an eye out for when the next round opens.</p>
-        <div class="cta-row">
-          <span class="btn-primary is-disabled">Submissions closed</span>
-          <span class="deadline-note">Next round opens soon</span>
+        <p>The August round of The Coop is officially open. Fill in the form below to enter — deadline is 15th August, 2026. Full guidelines are above if you need a refresher.</p>
+        <div class="form-embed-wrapper">
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSclAfhw1ilrIMB0jxbTA12sc4M_9IGLMe8somusKUlFhGcS9w/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0" title="chickenblue submission form">Loading…</iframe>
         </div>
-        <!-- We'll be back next month -->
-        <p class="deadline-note">We'll be back next month — see you then.</p>
+        <div class="submit-confirm-note">
+          <i class="ti ti-info-circle"></i>
+          <span>Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSclAfhw1ilrIMB0jxbTA12sc4M_9IGLMe8somusKUlFhGcS9w/viewform" target="_blank" rel="noopener noreferrer">Open it in a new tab</a> instead.</span>
+        </div>
       </div>
     </section>
 
@@ -644,12 +654,37 @@
       return `Unable to load ${what} right now. For the latest updates, follow us on <a href="${IG_LINK}" target="_blank">Instagram</a>.`;
     }
 
-    // Countdown to the July deadline — competition has closed, so show closed state
+    // Countdown to the August deadline
     function startCountdown() {
       const countdownEl = document.getElementById('countdown');
       const eyebrowEl = document.getElementById('hero-eyebrow');
-      countdownEl.innerHTML = '<div class="countdown-closed">Competition Closed.</div>';
-      if (eyebrowEl) eyebrowEl.textContent = 'Submissions closed';
+      const DEADLINE = new Date('2026-08-15T23:59:59');
+      let timer;
+
+      function update() {
+        const now = new Date();
+        const diff = DEADLINE - now;
+
+        if (diff <= 0) {
+          countdownEl.innerHTML = '<div class="countdown-closed">Competition Closed.</div>';
+          if (eyebrowEl) eyebrowEl.textContent = 'Submissions closed';
+          if (timer) clearInterval(timer);
+          return;
+        }
+
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000) / 60000);
+        const secs  = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('cd-days').textContent  = days;
+        document.getElementById('cd-hours').textContent = hours;
+        document.getElementById('cd-mins').textContent  = mins;
+        document.getElementById('cd-secs').textContent  = secs;
+      }
+
+      update();
+      timer = setInterval(update, 1000);
     }
 
     // Load blog posts from Substack RSS via rss2json
