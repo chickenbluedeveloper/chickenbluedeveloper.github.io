@@ -9,14 +9,14 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a18'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' fill='%23f0ede6'>cb</text></svg>" />
 
   <!-- Social sharing -->
-  <meta name="description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the August round are now closed. Winners announced 1st September." />
+  <meta name="description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the September round are now open, closing midnight 15th September." />
   <meta property="og:title" content="chickenblue" />
-  <meta property="og:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the August round are now closed. Winners announced 1st September." />
+  <meta property="og:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the September round are now open, closing midnight 15th September." />
   <meta property="og:url" content="https://www.chickenblue.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chickenblue" />
-  <meta name="twitter:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the August round are now closed. Winners announced 1st September." />
+  <meta name="twitter:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions for the September round are now open, closing midnight 15th September." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -439,15 +439,18 @@
   <div class="site">
 
     <div class="hero">
-      <p class="hero-eyebrow" id="hero-eyebrow">Submissions closed</p>
+      <p class="hero-eyebrow" id="hero-eyebrow">Submissions open</p>
       <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
-      <p class="hero-sub">Submissions for the August round of The Coop are now closed — thank you to everyone who sent in a story. Winners will be announced on the 1st of September via Bluesky, Substack and Instagram. The September round opens soon.</p>
+      <p class="hero-sub">The September round of The Coop is now open. Send us your best flash fiction before midnight on the 15th of September for your shot at the €88 grand prize and a place in the Hall of Fame.</p>
       <div class="cta-row">
-        <a href="#halloffame" class="btn-primary is-disabled">Submissions closed</a>
-        <span class="deadline-note">Winners announced 1st September, 2026</span>
+        <a href="#submit" class="btn-primary">Submit your story</a>
+        <span class="deadline-note">Deadline: midnight, 15th September 2026</span>
       </div>
       <div class="countdown" id="countdown">
-        <div class="countdown-closed">Competition closed. Winners announced 1st September.</div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-days">--</span><span class="countdown-label">Days</span></div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-hours">--</span><span class="countdown-label">Hours</span></div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-mins">--</span><span class="countdown-label">Mins</span></div>
+        <div class="countdown-cell"><span class="countdown-value" id="cd-secs">--</span><span class="countdown-label">Secs</span></div>
       </div>
     </div>
 
@@ -459,8 +462,8 @@
         <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
         <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, English speaking</p></div>
         <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
-        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Submissions closed</p></div>
-        <div class="detail-cell"><p class="dc-label">Winners announced</p><p class="dc-value">1st September, 2026</p></div>
+        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Submissions open</p></div>
+        <div class="detail-cell"><p class="dc-label">Deadline</p><p class="dc-value">Midnight, 15th September 2026</p></div>
       </div>
 
       <div class="prizes-section">
@@ -519,14 +522,17 @@
 
     <section id="submit">
       <p class="section-label">Enter the contest</p>
-      <h2>Submissions closed</h2>
+      <h2>Submit your story</h2>
       <div class="submit-card">
-        <p>The August round of The Coop is now closed to new entries. Thank you to everyone who submitted a story — winners will be announced on the 1st of September via Bluesky, Substack and Instagram. The September round opens soon; check back here or follow us for the announcement.</p>
+        <p>The September round of The Coop is open now. Click through to the submission form and paste in your story before midnight on the 15th of September — good luck!</p>
         <div class="cta-row">
-          <a href="#" class="btn-primary is-disabled">Submissions closed</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0KAHecZCmmduV2NJIU8DSZawpTkkiPBbS_3BldrmHsCisqA/viewform" target="_blank" rel="noopener noreferrer" class="btn-primary">Open the submission form</a>
+        </div>
+        <div class="submit-confirm-note">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <span>Opens in a new tab. Takes about a minute to fill in.</span>
         </div>
       </div>
-
     </section>
 
     <section id="blog">
@@ -640,6 +646,39 @@
         closeDrawer();
       }
     });
+
+    // Countdown to the September round deadline: midnight (end of day) 15th September 2026
+    const DEADLINE = new Date('2026-09-15T23:59:59');
+
+    function renderCountdown() {
+      const countdownEl = document.getElementById('countdown');
+      const now = new Date();
+      const diff = DEADLINE - now;
+
+      if (diff <= 0) {
+        countdownEl.innerHTML = '<div class="countdown-closed">Submissions are now closed. Winners announced 1st October.</div>';
+        document.getElementById('hero-eyebrow').textContent = 'Submissions closed';
+        clearInterval(countdownTimer);
+        return;
+      }
+
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins  = Math.floor((diff / (1000 * 60)) % 60);
+      const secs  = Math.floor((diff / 1000) % 60);
+
+      const d = document.getElementById('cd-days');
+      const h = document.getElementById('cd-hours');
+      const m = document.getElementById('cd-mins');
+      const s = document.getElementById('cd-secs');
+      if (d) d.textContent = String(days);
+      if (h) h.textContent = String(hours).padStart(2, '0');
+      if (m) m.textContent = String(mins).padStart(2, '0');
+      if (s) s.textContent = String(secs).padStart(2, '0');
+    }
+
+    renderCountdown();
+    const countdownTimer = setInterval(renderCountdown, 1000);
 
     const SHEET_ID = '1k3ajLNr9K3ZojwmZ4hnxx6P8_1TEWTrPwwEKa_sSh5Q';
     const IG_LINK  = 'https://www.instagram.com/chickenblue2/';
