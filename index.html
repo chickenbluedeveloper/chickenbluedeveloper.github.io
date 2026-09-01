@@ -443,7 +443,7 @@
       <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
       <p class="hero-sub">The September round of The Coop is now open. Send us your best flash fiction before midnight on the 15th of September for your shot at the €88 grand prize and a place in the Hall of Fame.</p>
       <div class="cta-row">
-        <a href="#submit" class="btn-primary">Submit your story</a>
+        <a href="#submit" class="btn-primary" id="hero-submit-cta">Submit your story</a>
         <span class="deadline-note">Deadline: midnight, 15th September 2026</span>
       </div>
       <div class="countdown" id="countdown">
@@ -609,6 +609,39 @@
   </div><!-- /.site -->
 
   <script>
+    // Slow custom scroll for the hero "Submit your story" button
+    (function () {
+      const heroBtn = document.getElementById('hero-submit-cta');
+      if (!heroBtn) return;
+
+      heroBtn.addEventListener('click', function (e) {
+        const target = document.querySelector('#submit');
+        if (!target) return;
+        e.preventDefault();
+
+        const startY = window.scrollY;
+        const navOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 60;
+        const endY = target.getBoundingClientRect().top + window.scrollY - navOffset;
+        const distance = endY - startY;
+        const duration = 1800; // ms — slower than the default smooth scroll
+        let startTime = null;
+
+        function easeInOutQuad(t) {
+          return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        }
+
+        function step(timestamp) {
+          if (startTime === null) startTime = timestamp;
+          const elapsed = timestamp - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          window.scrollTo(0, startY + distance * easeInOutQuad(progress));
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      });
+    })();
+
     // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(item => {
       const btn = item.querySelector('.faq-btn');
