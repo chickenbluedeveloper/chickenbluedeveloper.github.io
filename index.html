@@ -623,18 +623,14 @@
         const navOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 60;
         const endY = target.getBoundingClientRect().top + window.scrollY - navOffset;
         const distance = endY - startY;
-        const duration = 1800; // ms — slower than the default smooth scroll
+        const duration = 2200; // ms — slow, steady scroll so the page is visible as it passes
         let startTime = null;
-
-        function easeInOutQuad(t) {
-          return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-        }
 
         function step(timestamp) {
           if (startTime === null) startTime = timestamp;
           const elapsed = timestamp - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          window.scrollTo(0, startY + distance * easeInOutQuad(progress));
+          const progress = Math.min(elapsed / duration, 1); // linear — constant speed throughout
+          window.scrollTo(0, startY + distance * progress);
           if (progress < 1) requestAnimationFrame(step);
         }
 
