@@ -716,22 +716,47 @@
       return `Unable to load ${what} right now. For the latest updates, follow us on <a href="${IG_LINK}" target="_blank">Instagram</a>.`;
     }
 
-    // Load blog posts from Substack RSS via rss2json
+    // Load blog posts from multiple Substack publications via rss2json
     async function loadBlog() {
       const container = document.getElementById('blog-container');
-      const rssUrl = 'https://chickenblue.substack.com/feed?limit=20';
-      const proxyUrl  = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      
+      // Publication slugs — update this list when adding new publications
+      const publications = [
+        'chickenblue',      // Main publication
+        'harry-reid',       // Harry Reid publication
+        'kat-visser'        // Kat Visser publication
+      ];
 
       try {
-        const res  = await fetch(proxyUrl);
-        const data = await res.json();
+        // Fetch all publications in parallel
+        const fetchPromises = publications.map(pub => {
+          const rssUrl = `https://chickenblue.substack.com/feed?publication_id=${pub}&limit=20`;
+          const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+          return fetch(proxyUrl).then(res => res.json());
+        });
 
-        if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+        const results = await Promise.all(fetchPromises);
+
+        // Combine all posts from all publications
+        let allItems = [];
+        results.forEach(data => {
+          if (data.status === 'ok' && data.items && data.items.length > 0) {
+            allItems = allItems.concat(data.items);
+          }
+        });
+
+        if (allItems.length === 0) {
           container.innerHTML = '<div class="blog-empty">No posts yet — check back soon.</div>';
           return;
         }
 
-        const cards = data.items.map(item => {
+        // Sort by date (newest first)
+        allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+        // Limit to 20 total posts
+        allItems = allItems.slice(0, 20);
+
+        const cards = allItems.map(item => {
           const title = item.title || 'Untitled';
           const date  = item.pubDate
             ? new Date(item.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
