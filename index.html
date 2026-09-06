@@ -716,21 +716,20 @@
       return `Unable to load ${what} right now. For the latest updates, follow us on <a href="${IG_LINK}" target="_blank">Instagram</a>.`;
     }
 
-    // Load blog posts from multiple Substack publications via rss2json
+    // Load blog posts from multiple Substack accounts via rss2json
     async function loadBlog() {
       const container = document.getElementById('blog-container');
       
-      // Publication slugs — update this list when adding new publications
-      const publications = [
-        'chickenblue',      // Main publication
-        'harry-reid',       // Harry Reid publication
-        'kat-visser'        // Kat Visser publication
+      // Substack feed URLs — update this list when adding new accounts
+      const feedUrls = [
+        'https://chickenblue.substack.com/feed?limit=20',
+        'https://harryreid2.substack.com/feed?limit=20',
+        'https://katvisser.substack.com/feed?limit=20'
       ];
 
       try {
-        // Fetch all publications in parallel
-        const fetchPromises = publications.map(pub => {
-          const rssUrl = `https://chickenblue.substack.com/feed?publication_id=${pub}&limit=20`;
+        // Fetch all feeds in parallel
+        const fetchPromises = feedUrls.map(rssUrl => {
           const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
           return fetch(proxyUrl).then(res => res.json());
         });
