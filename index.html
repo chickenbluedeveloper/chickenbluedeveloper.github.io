@@ -9,14 +9,14 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a18'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' fill='%23f0ede6'>cb</text></svg>" />
 
   <!-- Social sharing -->
-  <meta name="description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. The September round is now closed; winners will be announced on 1st October." />
+  <meta name="description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions now open until October 15th." />
   <meta property="og:title" content="chickenblue" />
-  <meta property="og:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. The September round is now closed; winners will be announced on 1st October." />
+  <meta property="og:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions now open until October 15th." />
   <meta property="og:url" content="https://www.chickenblue.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="chickenblue" />
-  <meta name="twitter:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. The September round is now closed; winners will be announced on 1st October." />
+  <meta name="twitter:description" content="The Coop, a flash fiction contest. 1000 words*. €88 prize. Free to enter. Submissions now open until October 15th." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
@@ -258,8 +258,9 @@
     .form-embed-wrapper {
       border: 0.5px solid var(--border); border-radius: 10px;
       overflow: hidden; background: var(--surface);
+      margin-top: 1.5rem;
     }
-    .form-embed-wrapper iframe { display: block; width: 100%; border: none; }
+    .form-embed-wrapper iframe { display: block; width: 100%; border: none; min-height: 1000px; }
 
     /* ─── BLOG ────────────────────────────────────────────────── */
     .blog-scroll-wrapper { position: relative; margin-top: 1.5rem; }
@@ -437,15 +438,30 @@
   <div class="site">
 
     <div class="hero">
-      <p class="hero-eyebrow">Submissions closed</p>
+      <p class="hero-eyebrow">Submissions open</p>
       <h1>Take us<br><em>somewhere special</em><br>in under 1000 words*</h1>
-      <p class="hero-sub">The September round of The Coop is now closed. Winners will be announced on October 1st. Thank you to everyone who submitted!</p>
+      <p class="hero-sub">The October round of The Coop is now open. Submit your best flash fiction and compete for the €88 prize.</p>
       <div class="cta-row">
-        <a href="#halloffame" class="btn-primary">See previous winners</a>
-        <span class="deadline-note">Results announced: 1st October 2026</span>
+        <button id="scroll-to-submit" class="btn-primary">Submit your story</button>
+        <span class="deadline-note">Closes: 15th October 2026, midnight</span>
       </div>
-      <div class="countdown">
-        <div class="countdown-closed">Submissions are now closed. Winners announced 1st October.</div>
+      <div class="countdown" id="countdown-timer">
+        <div class="countdown-cell">
+          <span class="countdown-value" id="days">0</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-cell">
+          <span class="countdown-value" id="hours">0</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-cell">
+          <span class="countdown-value" id="minutes">0</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-cell">
+          <span class="countdown-value" id="seconds">0</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
       </div>
     </div>
 
@@ -457,8 +473,8 @@
         <div class="detail-cell"><p class="dc-label">Entry fee</p><p class="dc-value">Free to enter</p></div>
         <div class="detail-cell"><p class="dc-label">Open to</p><p class="dc-value">All writers, English speaking</p></div>
         <div class="detail-cell"><p class="dc-label">Genres</p><p class="dc-value">Any — no restrictions</p></div>
-        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Submissions closed</p></div>
-        <div class="detail-cell"><p class="dc-label">Next round</p><p class="dc-value">October — opening soon</p></div>
+        <div class="detail-cell"><p class="dc-label">Status</p><p class="dc-value">Submissions open</p></div>
+        <div class="detail-cell"><p class="dc-label">Deadline</p><p class="dc-value">15th October, midnight</p></div>
       </div>
 
       <div class="prizes-section">
@@ -513,6 +529,13 @@
           <p class="g-content"><strong>Questions?</strong> Reach us at <strong>hello@chickenblue.com</strong></p>
         </div>
       </div>
+    </section>
+
+    <section id="submit">
+      <p class="section-label">Ready to submit?</p>
+      <h2>The submission form</h2>
+      <p style="font-size: 15px; color: var(--ink2); line-height: 1.75; margin-bottom: 1.5rem;">Open the form in a new tab and paste your story. Keep it under 1000 words, use plain text, and make sure it's your own work.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfX-Ll4ouXhli2D8oV4nGerOBexI5BvaumJH_4VD4MQDg/viewform" target="_blank" class="btn-primary">Open submission form →</a>
     </section>
 
     <section id="blog">
@@ -589,6 +612,56 @@
   </div><!-- /.site -->
 
   <script>
+    // Countdown timer
+    function updateCountdown() {
+      const closingTime = new Date('2026-10-16T00:00:00').getTime(); // midnight on the 16th (end of the 15th)
+      const now = new Date().getTime();
+      const distance = closingTime - now;
+
+      if (distance < 0) {
+        // Deadline has passed
+        document.getElementById('countdown-timer').innerHTML = '<div class="countdown-closed" style="flex: 1; padding: 1rem 1.5rem;">Submissions are now closed. Winners announced on 1st November.</div>';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Smooth scroll to submit button over 4 seconds
+    document.getElementById('scroll-to-submit').addEventListener('click', () => {
+      const submitSection = document.getElementById('submit');
+      const startPosition = window.scrollY;
+      const endPosition = submitSection.offsetTop - 60; // Account for nav height
+      const distance = endPosition - startPosition;
+      const duration = 4000; // 4 seconds
+      let startTime = null;
+
+      function smoothScroll(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        window.scrollTo(0, startPosition + distance * progress);
+        
+        if (progress < 1) {
+          requestAnimationFrame(smoothScroll);
+        }
+      }
+
+      requestAnimationFrame(smoothScroll);
+    });
+
     // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(item => {
       const btn = item.querySelector('.faq-btn');
