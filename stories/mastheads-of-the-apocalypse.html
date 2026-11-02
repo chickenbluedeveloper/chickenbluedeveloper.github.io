@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mastheads of the Apocalypse — chickenblue</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a18'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' fill='%23f0ede6'>cb</text></svg>" />
+
+  <meta name="description" content="Mastheads of the Apocalypse by Sam E. Sutin — winner of The Coop, October 2026." />
+  <meta property="og:title" content="Mastheads of the Apocalypse — chickenblue" />
+  <meta property="og:description" content="Mastheads of the Apocalypse by Sam E. Sutin — winner of The Coop, October 2026." />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mastheads of the Apocalypse — chickenblue" />
+  <meta name="twitter:description" content="Mastheads of the Apocalypse by Sam E. Sutin — winner of The Coop, October 2026." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink2: #5f5e5a;
+      --ink3: #888780;
+      --surface: #ffffff;
+      --surface2: #f7f6f2;
+      --border: rgba(0,0,0,0.1);
+      --border2: rgba(0,0,0,0.18);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+      --nav-height: 60px;
+      --site-max: 680px;
+      --site-pad: 2rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f0ede6;
+        --ink2: #b4b2a9;
+        --ink3: #888780;
+        --surface: #1a1a18;
+        --surface2: #222220;
+        --border: rgba(255,255,255,0.1);
+        --border2: rgba(255,255,255,0.18);
+      }
+    }
+
+    body { font-family: var(--sans); background: var(--surface); color: var(--ink); line-height: 1.6; }
+    .site { max-width: var(--site-max); margin: 0 auto; padding: 0 var(--site-pad) 6rem; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      padding: 1rem 0; border-bottom: 0.5px solid var(--border);
+      margin-bottom: 4rem; position: sticky; top: 0;
+      background: var(--surface); z-index: 10; height: var(--nav-height);
+    }
+    .back-link {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+      color: var(--ink2); text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ink); }
+    .logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink2); text-decoration: none; }
+
+    .story-header { margin-bottom: 3rem; }
+    .edition-badge {
+      display: inline-block; font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3);
+      border: 0.5px solid var(--border2); border-radius: 20px;
+      padding: 0.4rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-weight: 400; line-height: 1.1; color: var(--ink);
+      margin-bottom: 1rem; letter-spacing: -0.01em;
+    }
+    .byline { font-family: var(--mono); font-size: 13px; color: var(--ink3); }
+    .byline strong { color: var(--ink2); font-weight: 500; }
+
+    .story-body {
+      font-family: var(--serif); font-size: 19px; line-height: 1.9;
+      color: var(--ink); max-width: 620px;
+    }
+    .story-body p { margin-bottom: 1.4rem; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body em { font-style: italic; }
+    .story-body h2 {
+      font-family: var(--mono); font-size: 12px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3);
+      margin: 3rem 0 1.5rem;
+    }
+    .story-body .member {
+      font-family: var(--sans); font-size: 15px; font-weight: 500;
+      color: var(--ink); margin-bottom: 0.5rem; line-height: 1.5;
+    }
+    .story-body .member + p { margin-bottom: 2rem; }
+
+    .story-footer {
+      margin-top: 4rem; padding-top: 2rem; border-top: 0.5px solid var(--border);
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .story-footer p { font-size: 14px; color: var(--ink2); line-height: 1.75; max-width: 520px; }
+    .footer-cta { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+      background: var(--ink); color: var(--surface); border: none;
+      padding: 0.8rem 1.6rem; border-radius: 6px;
+      cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.75; }
+    .btn-secondary {
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+      color: var(--ink2); text-decoration: none; border: 0.5px solid var(--border2);
+      padding: 0.8rem 1.6rem; border-radius: 6px; transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--ink); border-color: var(--ink3); }
+
+    footer {
+      border-top: 0.5px solid var(--border); padding-top: 2rem; margin-top: 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: var(--mono); font-size: 12px; color: var(--ink3); }
+    .footer-links { display: flex; gap: 1.5rem; align-items: center; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--ink3); text-decoration: none; }
+    .footer-links a:hover { color: var(--ink2); }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <nav>
+      <a href="/" class="back-link"><i class="ti ti-arrow-left"></i> chickenblue</a>
+      <a href="/#halloffame" class="logo">Hall of Fame</a>
+    </nav>
+
+    <div class="story-header">
+      <span class="edition-badge">October 2026 Winner</span>
+      <h1>Mastheads of the Apocalypse</h1>
+      <p class="byline">by <strong>Sam E. Sutin</strong></p>
+    </div>
+
+    <div class="story-body">
+      <h2>About Us</h2>
+      <p>Welcome, friend, to Abodale Gardens, a self-sustaining community dedicated to the preservation of what little humanity remains. We mourn the untold tragedies which have delivered you to our gates, but are happy to have found you, nonetheless.</p>
+
+      <h2>Meet Our Team</h2>
+
+      <p class="member">Marviola Saban, Founder, Mayor, Amateur Necromancer</p>
+      <p>By day, Marviola Saban is the acclaimed founder and mayor of Abodale Gardens, the last bastion of cogent civilization in the greater Balcones area. By night she is still all of those things, because retrieving mankind from the brink of extinction isn’t something one fits neatly into a typical nine-to-five. In a past life Marviola dreamed of settling down somewhere quiet to herd children, raise cats, and otherwise summarily fuck off from the overwhelming intricacies of then-modern existence. Instead, she has found herself as a load-bearing pillar in humanity’s final struggle against annihilation, and unwinds by gossiping with the pickled head of her late(ish) husband, whom she keeps propped above the refrigerator next to the good scotch.</p>
+
+      <p class="member">Susurana Larke, Resource Management</p>
+      <p>Susurana Larke spends most of her time reminding residents that forty-minute showers are how civilizations collapse. Before joining Abodale Gardens, Susurana served as a managing assistant at the Shinoak Station Colony, a role she insists had nothing to do with the frequent famines and rampant starvation. In her free time Susurana enjoys quality time with her daughter, long walks in the orchard, and stockpiling private caches of non-perishable goods.</p>
+
+      <p class="member">Monica Shirk, Maintenance</p>
+      <p>Monica Shirk has never met a problem she couldn’t beat over the head with a frying pan. After a lifetime of licking billionaire’s boots just to keep food on the table, Monica considers the end of the world to be a marked improvement. Making rich idiots get on their knees and beg for services any fourth grader could perform has never felt more satisfying. Nor have her boots ever shined so bright. To learn more about Monica, break something. See how it goes for you.</p>
+
+      <p class="member">Bartholomew Pilgrim, Internal Compliance</p>
+      <p>From fishing golf balls out of the rafters at Madison Square Garden to moonlighting as a human test subject in the Arcon-Antimatter Experiments, Bartholomew Pilgrim has done a little bit of everything. More importantly, Bartholomew knows everything. Mainly thanks to the ESP he picked up from the Arcon, but he likes to think he’d always been a people person. These days, Bartholomew spends his time mediating neighborly disagreements and deescalating inter-domestic disputes. You can usually find him walking the streets of Abodale Gardens, perusing unsuspecting minds in search of seditious thoughts.</p>
+
+      <p class="member">Andreas Greenwell, Security</p>
+      <p>Andreas Greenwell used to kill people for money. No, seriously. He was really good at it, too. But don’t worry, these days Andreas makes use of his unusual skillset by protecting Abodale Gardens from any residual horrors lurking too close to the walls. His recent highlights include the daring rescue of Suzy Jesper from a god-deluded cyborg, the Grand Ravenhead of the SkareKrow Klan’s untimely “heart-attack,” and the extermination of a particularly resilient pack of radioactive were-deer. If you find yourself in dire straits, do not go looking for Andreas. He will find you. He will always find you.</p>
+
+      <p class="member">Bracken Rho, Oxymoturgist</p>
+      <p>No one is quite sure how Bracken Rho got here—least of all Bracken Rho. That’s the thing about studying paradox magic at a university located outside of space and time: sometimes shit just happens. And that shit has dropped Bracken smack-dab in the middle of the apocalypse. He tries to make the most of it, spending his days orchestrating temporal excursions and researching the exact number of sand grains needed to form a heap. You can find him where all the horses are blue, but only if your induction is spotty.</p>
+
+      <p class="member">Ramaa Desimo, Sanitation</p>
+      <p>Before the plagues, droughts, and other assorted nightmares of the end-times, the one skill at which Ramaa Desimo truly excelled was in keeping things clean. The satin-softness of freshly washed sheets sifting through your fingers. The sweet scents of budding flowers newly sprouted from the soil. These days, such luxuries help Ramaa remember that life is about more than just survival—it is about finding the things worth living for. Recently, Ramaa has expanded their purview to cultural purity as well, and is now responsible for regulating all forms of self-expression and social deviance within the compound. Stability is, after all, the key to survival. You can find Ramaa’s work anywhere that is tidy, orderly, and uniform. Kindly report any and all infractions to the Office of Internal Compliance, and remember: your neighbors will be doing the same!</p>
+
+      <p class="member">Acorn Sprouts, Tree</p>
+      <p>Whether it was cosmic radiation, overwrought biomechanical tinkering, or just sheer boredom, no one can deny that the trees have gained sentience. None more so than Acorn Sprouts, Abodale Gardens’ first true resident. You can find Acorn’s roots cradling each and every building in the compound, the dull pulsation of its life force inseminating healthy, dreamlike thoughts amongst the populace. Do not be alarmed to find one of Acorn’s dendrologic tendrils coiling around your torso—just lie back, relax, and expound as the dreamsap sizzles against your skin, emptying your mind of aches, worries, and woes. All is at peace within Abodale Gardens. All is as it should be.</p>
+
+      <h2>Application Guidelines</h2>
+      <p>Unfortunately, we are not accepting unsolicited submissions to join Abodale Gardens at this time. Please do not query. If you have not heard from us within six months, consider your application denied. We do not accept simultaneous or multiple applications. If we find that you have violated any of these tenets or employed the use of an AI, cyborg, or minor deity in your application, death will come quickly. There is nowhere Mr. Greenwell cannot find you.</p>
+      <p>For any other questions relating to Abodale Gardens, you may contact us via any guild-certified scrying tablet—though we are not responsible for any demonic possessions this may incur. Response times may vary depending on wind conditions and the unrelenting linearity of time.</p>
+      <p>That is all.</p>
+    </div>
+
+    <div class="story-footer">
+      <p>Winner of The Coop, chickenblue's monthly flash fiction contest. Congratulations to Sam E. Sutin — and thank you to everyone who entered the October round.</p>
+      <div class="footer-cta">
+        <a href="/#halloffame" class="btn-secondary">See all winners</a>
+        <a href="/#submit" class="btn-primary">Enter the next round</a>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-logo">chickenblue · 2026</span>
+      <div class="footer-links">
+        <a href="mailto:hello@chickenblue.com">Contact</a>
+        <a href="https://www.instagram.com/chickenblue2/" target="_blank" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
